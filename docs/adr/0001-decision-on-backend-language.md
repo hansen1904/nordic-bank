@@ -1,14 +1,10 @@
-# Choosing the Programming Language for the Banking Core System
-- Status: proposed
+# Choosing the Backend Language for the Banking Core System
+- Status: accepted
 - Deciders: @hansen1904
 - Date: 2024-12-08
 
 ## Context and Problem Statement
-We need to select the most appropriate programming language for developing the core banking system of Nordic Bank. 
-
-The language must meet our requirements for security, performance, maintainability, and scalability. 
-
-The decision is critical as it will affect the future development and operation of the system.
+We need to select the most appropriate programming language for developing the core banking system of Nordic Bank. The language must meet our requirements for security, performance, maintainability, and scalability. The decision is critical as it will affect the future development and operation of the system.
 
 ## Decision Drivers
 - Security: The language must support secure coding practices and offer robust security features.
@@ -39,6 +35,8 @@ Chosen option: "Go", because it is designed for concurrency and performance, mak
 - Good, because it offers strong security features.
 - Good, because it has a robust framework with .NET.
 - Good, because it integrates well with Microsoft products and services.
+- Bad, because it may have higher runtime memory consumption compared to more lightweight languages.
+- Bad, because the development environment setup can be more complex, especially on non-Windows platforms.
 
 ### Go
 - Good, because it is designed for concurrency and performance, making it highly efficient.

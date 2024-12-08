@@ -6,14 +6,9 @@ Welcome to Nordic Bank! This repository contains the source code for Nordic Bank
 
 Nordic Bank is a modern banking platform designed to meet the financial needs of individuals and businesses. We offer a wide range of services including savings accounts, loans, investment options, and more.
 
-## Installation
+## Getting Started / Installation
 
-To run Nordic Bank locally, follow these steps:
-
-1. Clone the repository:
-```bash
-   git clone https://github.com/hansen1904/nordic-bank.git
-```
+Go to the folder docs and find [getting started](docs/getting-started.md) markdown.
 
 ## Tools
 
