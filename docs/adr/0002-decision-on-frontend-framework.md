@@ -34,20 +34,26 @@ Chosen option: "React", because it offers high performance, a strong community, 
 ## Pros and Cons of the Options
 
 ### React
-- Good, because it offers high performance and flexibility.
-- Good, because it has strong community support and a rich ecosystem.
-- Good, because it aligns with the team's expertise.
-- Bad, because it requires additional configuration and setup.
-- Bad, because the large ecosystem can lead to decision fatigue.
+- **Pros**:
+    - Offers high performance and flexibility.
+    - Has strong community support and a rich ecosystem.
+    - Aligns with the team's expertise.
+- **Cons**:
+    - Requires additional configuration and setup.
+    - The large ecosystem can lead to decision fatigue.
 
 ### Angular
-- Good, because it provides a comprehensive framework with built-in features.
-- Good, because it has strong community support and documentation.
-- Bad, because it has a steeper learning curve.
-- Bad, because it can be overkill for simpler applications.
+- **Pros**:
+    - Provides a comprehensive framework with built-in features.
+    - Has strong community support and documentation.
+- **Cons**:
+    - Has a steeper learning curve.
+    - It can be overkill for simpler applications.
 
 ### Vue.js
-- Good, because it is easy to learn and integrate.
-- Good, because it offers a flexible and performant framework.
-- Bad, because it has a smaller community compared to React and Angular.
-- Bad, because it may lack some advanced features found in other frameworks.
+- **Pros**:
+    - Easy to learn and integrate.
+    - Offers a flexible and performant framework.
+- **Cons**:
+    - Has a smaller community compared to React and Angular.
+    - May lack some advanced features found in other frameworks.

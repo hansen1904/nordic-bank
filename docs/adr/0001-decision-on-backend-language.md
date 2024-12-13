@@ -32,13 +32,16 @@ Chosen option: "Go", because it is designed for concurrency and performance, mak
 ## Pros and Cons of the Options
 
 ### C#
-- Good, because it offers strong security features.
-- Good, because it has a robust framework with .NET.
-- Good, because it integrates well with Microsoft products and services.
-- Bad, because it may have higher runtime memory consumption compared to more lightweight languages.
-- Bad, because the development environment setup can be more complex, especially on non-Windows platforms.
+- **Pros**:
+    - Offers strong security features.
+    - Has a robust framework with .NET.
+    - Integrates well with Microsoft products and services.
+- **Cons**:
+    - May have higher runtime memory consumption compared to more lightweight languages.
+    - Development environment setup can be more complex, especially on non-Windows platforms.
 
 ### Go
-- Good, because it is designed for concurrency and performance, making it highly efficient.
-- Good, because it has a simple syntax, which can lead to faster development and easier maintenance.
-- Good, because it is backed by a strong community and has growing support.
+- **Pros**:
+    - Designed for concurrency and performance, making it highly efficient.
+    - Simple syntax, which can lead to faster development and easier maintenance.
+    - Backed by a strong community and has growing support.
