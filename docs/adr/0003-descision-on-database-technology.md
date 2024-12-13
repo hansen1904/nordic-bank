@@ -36,27 +36,35 @@ Chosen option: "PostgreSQL", because it offers strong support for ACID transacti
 ## Pros and Cons of the Options
 
 ### PostgreSQL
-- Good, because it ensures high data integrity and supports ACID transactions.
-- Good, because it delivers excellent performance for complex queries.
-- Good, because it offers robust security features.
-- Good, because it has a strong community and commercial support.
-- Bad, because it may require additional tuning for very high transaction volumes.
-- Bad, because it has a steeper learning curve for developers not familiar with it.
+- **Pros**:
+    - Ensures high data integrity and supports ACID transactions.
+    - Delivers excellent performance for complex queries.
+    - Offers robust security features.
+    - Strong community and commercial support.
+- **Cons**:
+    - Require additional tuning for very high transaction volumes.
+    - Steeper learning curve for developers not familiar with it.
 
 ### MySQL
-- Good, because it is widely used and has strong community support.
-- Good, because it is easy to set up and use.
-- Bad, because it has limited support for complex queries compared to PostgreSQL.
-- Bad, because it may not perform as well under very high transaction volumes.
+- **Pros**:
+    - Widely used and has strong community support.
+    - Easy to set up and use.
+- **Cons**:
+    - Limited support for complex queries compared to PostgreSQL.
+    - May not perform as well under very high transaction volumes.
 
 ### Microsoft SQL Server
-- Good, because it offers strong support for ACID transactions and high performance.
-- Good, because it integrates well with other Microsoft products.
-- Bad, because it has higher licensing costs compared to open-source options.
-- Bad, because it may not be as flexible for scaling in cloud environments.
+- **Pros**:
+    - Offers strong support for ACID transactions and high performance.
+    - Integrates well with other Microsoft products.
+- **Cons**:
+    - Higher licensing costs compared to open-source options.
+    - May not be as flexible for scaling in cloud environments.
 
 ### MongoDB
-- Good, because it offers high performance for read-heavy operations.
-- Good, because it is highly scalable for horizontal scaling.
-- Bad, because it has limited support for ACID transactions.
-- Bad, because it may not provide the same level of data integrity as relational databases.
+- **Pros**:
+    - Offers high performance for read-heavy operations.
+    - Highly scalable for horizontal scaling.
+- **Cons**:
+    - Limited support for ACID transactions.
+    - May not provide the same level of data integrity as relational databases.
