@@ -1,0 +1,39 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+processors: 
+  batch: 
+  memory_limiter: 
+    check_interval: 5s 
+    limit_mib: 512 
+    spike_limit_mib: 128
+
+extensions: 
+  zpages: 
+    endpoint: "0.0.0.0:55679"
+  health_check: 
+    endpoint: "0.0.0.0:13133"
+
+exporters:
+  otlp:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch, memory_limiter]
+      exporters: [otlp]
+    metrics:
+      receivers: [otlp]
+      processors: [batch, memory_limiter]
+      exporters: [prometheus]
+
+  extensions: [health_check, zpages]

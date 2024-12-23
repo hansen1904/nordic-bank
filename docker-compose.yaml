@@ -1,0 +1,63 @@
+services:
+  db:
+    image: postgres:17.2
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: hansen
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: nordic_bank
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+  prometheus: 
+    image: prom/prometheus:latest 
+    container_name: prometheus 
+    volumes: 
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml 
+    ports: 
+      - "9090:9090"
+
+  grafana: 
+    image: grafana/grafana:latest 
+    container_name: grafana 
+    ports: 
+      - "3000:3000" 
+    environment: 
+      - GF_SECURITY_ADMIN_PASSWORD=admin 
+    volumes: 
+      - grafana-storage:/var/lib/grafana
+
+  otel-collector: 
+    image: otel/opentelemetry-collector:latest 
+    command: ["--config=/etc/otel-collector-config.yml"]
+    container_name: otel-collector 
+    ports: 
+      - "8889:8889"
+      - "4317:4317" # OTLP gRPC receiver
+      - "13133:13133" # Health check
+    volumes: 
+      - ./otel-collector-config.yml:/etc/otel-collector-config.yml
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger 
+    ports:
+      - "6831:6831/udp" # UDP port for Jaeger agent
+      - "16686:16686" # Web UI
+      - "14268:14268" # HTTP port for spans
+volumes:
+  postgres_data:
+  grafana-storage:
