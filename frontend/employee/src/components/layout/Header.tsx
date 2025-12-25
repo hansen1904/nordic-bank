@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Plus, Bell } from 'lucide-react';
 
@@ -12,6 +12,7 @@ interface HeaderProps {
 export default function Header({ employeeName = 'Tom' }: HeaderProps) {
     const t = useTranslations('dashboard');
     const params = useParams();
+    const pathname = usePathname();
     const currentLocale = params.locale as string;
 
     const getTimeOfDay = () => {
@@ -26,19 +27,22 @@ export default function Header({ employeeName = 'Tom' }: HeaderProps) {
         name: employeeName
     });
 
+    // Get the path without the locale prefix
+    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/';
+
     return (
         <header className="dashboard-header">
             <h1 className="greeting">{greeting}</h1>
             <div className="header-actions">
                 <div className="language-switcher">
                     <Link
-                        href={`/da${params.locale === 'en' ? window.location.pathname.slice(3) : ''}`}
+                        href={`/da${pathWithoutLocale}`}
                         className={`lang-option ${currentLocale === 'da' ? 'active' : ''}`}
                     >
                         DA
                     </Link>
                     <Link
-                        href={`/en${params.locale === 'da' ? window.location.pathname.slice(3) : ''}`}
+                        href={`/en${pathWithoutLocale}`}
                         className={`lang-option ${currentLocale === 'en' ? 'active' : ''}`}
                     >
                         EN
