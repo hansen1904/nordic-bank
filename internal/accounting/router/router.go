@@ -18,6 +18,12 @@ func SetupRouter() *gin.Engine {
 	userService := application.UserService{UserRepository: userRepository}
 	accountHandler := &http.Handler{Service: userService}
 
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"status": "ok",
+		})
+	})
+
 	api := router.Group("/api")
 	{
 		accountHandler.RegisterRoutes(api)

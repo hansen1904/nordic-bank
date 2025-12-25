@@ -1,0 +1,86 @@
+{
+    "metadata": {
+        "title": "Nordic Bank - Din Moderne Bank",
+        "description": "Sikker, effektiv og brugervenlig bankservice til alle dine finansielle behov."
+    },
+    "header": {
+        "home": "Hjem",
+        "about": "Om Os",
+        "loans": "Lån",
+        "contact": "Kontakt",
+        "login": "Log ind"
+    },
+    "hero": {
+        "title": "Banking til et Moderne Nordisk Liv",
+        "subtitle": "Oplev sikker, effektiv og brugervenlig bankservice designet til at opfylde alle dine finansielle behov.",
+        "cta_primary": "Kom i Gang",
+        "cta_secondary": "Læs Mere"
+    },
+    "features": {
+        "title": "Hvorfor Vælge Nordic Bank?",
+        "subtitle": "Vi tilbyder en komplet pakke af bankservices med fokus på sikkerhed, enkelhed og fantastiske renter.",
+        "loans": {
+            "title": "Konkurrencedygtige Lån",
+            "description": "Fleksible lånemuligheder med markedets bedste renter til bolig, bil og personlige behov."
+        },
+        "savings": {
+            "title": "Sikker Opsparing",
+            "description": "Din opsparing vokser sikkert med attraktive renter og fuld indskudsgaranti."
+        },
+        "payments": {
+            "title": "Nemme Betalinger",
+            "description": "Hurtige og sikre overførsler med vores moderne betalingsløsninger og app."
+        },
+        "support": {
+            "title": "24/7 Support",
+            "description": "Vores dedikerede kundeservice står klar til at hjælpe dig døgnet rundt."
+        }
+    },
+    "loans_section": {
+        "title": "Lån med Lave Renter",
+        "subtitle": "Realisér dine drømme med vores konkurrencedygtige lånetilbud.",
+        "rate_label": "Fra kun",
+        "rate_value": "3,95%",
+        "rate_suffix": "ÅOP",
+        "benefits": [
+            "Ingen skjulte gebyrer",
+            "Hurtig godkendelse",
+            "Fleksibel tilbagebetaling"
+        ],
+        "cta": "Ansøg Nu"
+    },
+    "footer": {
+        "description": "Nordic Bank - Din moderne partner i alle finansielle anliggender. Vi er her for at hjælpe dig med at nå dine økonomiske mål.",
+        "quick_links": "Hurtige Links",
+        "contact": "Kontakt",
+        "follow_us": "Følg Os",
+        "address": "Vestergade 42, 1456 København K",
+        "phone": "+45 70 12 34 56",
+        "email": "kontakt@nordicbank.dk",
+        "copyright": "© 2024 Nordic Bank. Alle rettigheder forbeholdes."
+    },
+    "language": {
+        "label": "Sprog",
+        "da": "Dansk",
+        "en": "English"
+    },
+    "login": {
+        "title": "Log ind på din konto",
+        "subtitle": "Velkommen tilbage! Indtast dine oplysninger for at få adgang til din konto.",
+        "email_label": "E-mail",
+        "email_placeholder": "din@email.dk",
+        "password_label": "Adgangskode",
+        "password_placeholder": "Indtast din adgangskode",
+        "remember_me": "Husk mig",
+        "forgot_password": "Glemt adgangskode?",
+        "submit": "Log ind",
+        "no_account": "Har du ikke en konto?",
+        "register": "Opret konto",
+        "coming_soon": {
+            "title": "Kommer Snart",
+            "message": "Vi arbejder hårdt på at gøre online banking klar til dig. Tilmeld dig vores venteliste for at blive den første til at vide, når vi lancerer.",
+            "notify_placeholder": "Indtast din e-mail",
+            "notify_button": "Giv mig besked"
+        }
+    }
+}
