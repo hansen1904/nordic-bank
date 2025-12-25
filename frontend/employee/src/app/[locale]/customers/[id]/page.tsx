@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import { mockCustomers, mockAccounts, mockTransactions } from '@/lib/mock-data';
@@ -10,8 +10,8 @@ export default async function CustomerDetailPage({
     params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
-    const t = useTranslations('customers');
-    const tTx = useTranslations('transactions');
+    const t = await getTranslations('customers');
+    const tTx = await getTranslations('transactions');
 
     const customer = mockCustomers.find((c) => c.id === id);
 

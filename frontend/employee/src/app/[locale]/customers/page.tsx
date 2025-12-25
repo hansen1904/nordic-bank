@@ -1,12 +1,12 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import CustomerSearchBar from '@/components/customer/CustomerSearchBar';
 import { mockCustomers } from '@/lib/mock-data';
 import { formatCurrency, formatPhoneNumber } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
 
-export default function CustomersPage() {
-    const t = useTranslations('customers');
+export default async function CustomersPage() {
+    const t = await getTranslations('customers');
 
     return (
         <div>
