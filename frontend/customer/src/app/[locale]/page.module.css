@@ -1,0 +1,312 @@
+/* ========================================
+   Hero Section - Grave and Editorial
+   ======================================== */
+.hero {
+    position: relative;
+    min-height: 80vh;
+    /* Reduced height for seriousness */
+    display: flex;
+    align-items: center;
+    background: white;
+    /* Clean white background */
+    padding-top: calc(var(--header-height) + var(--spacing-16));
+    padding-bottom: var(--spacing-16);
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-neutral-100);
+}
+
+.heroBackground {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 70% 30%, rgba(15, 23, 42, 0.03) 0%, transparent 70%);
+}
+
+.heroBackground::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, var(--color-neutral-200) 1px, transparent 0);
+    background-size: 40px 40px;
+    /* Subtle architectural grid */
+    opacity: 0.5;
+}
+
+.heroContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-12);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 1024px) {
+    .heroContainer {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: var(--spacing-16);
+    }
+}
+
+.heroContent {
+    text-align: left;
+}
+
+.heroTitle {
+    color: var(--color-primary-900);
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.heroSubtitle {
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.heroCtas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .heroCtas {
+        flex-direction: row;
+    }
+}
+
+/* Hero Visual - Solid & Real */
+.heroVisual {
+    display: flex;
+    justify-content: center;
+}
+
+.heroCard {
+    width: 100%;
+    max-width: 400px;
+    background: var(--color-primary-900);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    border: 1px solid var(--color-primary-800);
+    aspect-ratio: 1.58 / 1;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cardBrand {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.cardNumber {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.15em;
+    margin: 1.5rem 0;
+}
+
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardLabel {
+    display: block;
+    font-size: 0.625rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.cardValue {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* ========================================
+   Features Section - High-end Cards
+   ======================================== */
+.features {
+    padding: var(--spacing-24) 0;
+    background: var(--bg-secondary);
+}
+
+.sectionHeader {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-16);
+}
+
+.sectionHeader h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.featureCard {
+    background: white;
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    transition: all var(--transition-normal);
+}
+
+.featureCard:hover {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.08);
+}
+
+.featureIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary-50);
+    border-radius: var(--radius-md);
+    color: var(--color-primary-900);
+    margin-bottom: 1.5rem;
+}
+
+.featureTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--color-primary-900);
+}
+
+.featureDescription {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* ========================================
+   Loans Section - Structured & Trustworthy
+   ======================================== */
+.loans {
+    padding: var(--spacing-24) 0;
+    background: white;
+}
+
+.loansContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-16);
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .loansContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.rateDisplay {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: 2rem 0;
+}
+
+.rateValue {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--color-primary-900);
+}
+
+.benefitsList {
+    margin-bottom: 2.5rem;
+}
+
+.benefitItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    font-weight: 500;
+}
+
+.benefitIcon {
+    color: var(--color-success);
+}
+
+.loansVisual {
+    display: flex;
+    justify-content: center;
+}
+
+.loanCard {
+    width: 100%;
+    max-width: 440px;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    border: 1px solid var(--color-neutral-200);
+    box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.1);
+}
+
+.loanAmount {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-neutral-100);
+}
+
+.loanCurrency {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.loanValue {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary-900);
+}
+
+.loanDetails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.loanDetailLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.loanDetailValue {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary-900);
+}

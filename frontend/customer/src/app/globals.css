@@ -1,0 +1,214 @@
+/* Nordic Bank Design System - Classic & Secure Refactor */
+
+/* ========================================
+   CSS Custom Properties (Design Tokens)
+   ======================================== */
+:root {
+  /* Primary Colors - Classic Navy & Slate */
+  --color-primary-950: #020617;
+  /* Very Dark Navy */
+  --color-primary-900: #0f172a;
+  /* Deep Navy */
+  --color-primary-800: #1e293b;
+  /* Slate Navy */
+  --color-primary-700: #334155;
+  --color-primary-600: #475569;
+  --color-primary-500: #64748b;
+  --color-primary-100: #f1f5f9;
+  --color-primary-50: #f8fafc;
+
+  /* Accent Colors - Trust & Seriousness */
+  /* Replaced vibrant teal/purple with more grounded "Steel Blue" and "Deep Gold" for value */
+  --color-accent-blue: #2563eb;
+  --color-accent-gold: #92400e;
+  --color-accent-steel: #4b5563;
+
+  /* Neutral Colors */
+  --color-neutral-900: #111827;
+  --color-neutral-800: #1f2937;
+  --color-neutral-700: #374151;
+  --color-neutral-600: #4b5563;
+  --color-neutral-500: #6b7280;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-50: #f9fafb;
+
+  /* Semantic Colors */
+  --color-success: #065f46;
+  /* Deep Green */
+  --color-warning: #92400e;
+  /* Deep Amber */
+  --color-error: #991b1b;
+  /* Deep Red */
+  --color-info: #1e40af;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-dark: var(--color-primary-950);
+
+  /* Refined Gradients - Subtle & Grave */
+  --bg-gradient-hero: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  --bg-gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --bg-glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Text Colors */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-inverse: #ffffff;
+  --text-accent: #2563eb;
+
+  /* Typography - Classic Sans */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3.5rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing - Structured */
+  --spacing-4: 1rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-24: 6rem;
+
+  /* Border Radius - Sharp but Premium */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* Transitions - Purposeful Micro-interactions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Container */
+  --container-max: 1200px;
+  --header-height: 72px;
+}
+
+/* Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism Classes - Refined & Subtle */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--bg-glass-border);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Button Refactor - Serious and Substantial */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: var(--color-primary-900);
+  color: white;
+  border: 1px solid var(--color-primary-800);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-950);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--color-primary-900);
+  border: 1px solid var(--color-neutral-300);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary-50);
+  border-color: var(--color-primary-200);
+}
+
+/* Typography Utilities */
+.heading-1 {
+  font-size: var(--font-size-5xl);
+  font-weight: 700;
+  color: var(--color-primary-900);
+  line-height: 1.1;
+}
+
+.heading-2 {
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  color: var(--color-primary-900);
+  margin-bottom: 1rem;
+}
+
+.text-large {
+  font-size: var(--font-size-xl);
+  color: var(--text-secondary);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--spacing-24) 0;
+}
+
+/* Micro-interaction Helpers */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll Lock */
+.antigravity-scroll-lock {
+  overflow: hidden !important;
+}

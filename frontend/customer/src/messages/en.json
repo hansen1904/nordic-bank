@@ -1,0 +1,86 @@
+{
+    "metadata": {
+        "title": "Nordic Bank - Your Modern Bank",
+        "description": "Secure, efficient, and user-friendly banking services for all your financial needs."
+    },
+    "header": {
+        "home": "Home",
+        "about": "About",
+        "loans": "Loans",
+        "contact": "Contact",
+        "login": "Login"
+    },
+    "hero": {
+        "title": "Banking for a Modern Nordic Life",
+        "subtitle": "Experience secure, efficient, and user-friendly banking designed to meet all your financial needs.",
+        "cta_primary": "Get Started",
+        "cta_secondary": "Learn More"
+    },
+    "features": {
+        "title": "Why Choose Nordic Bank?",
+        "subtitle": "We offer a complete suite of banking services focused on security, simplicity, and great rates.",
+        "loans": {
+            "title": "Competitive Loans",
+            "description": "Flexible loan options with the best market rates for home, car, and personal needs."
+        },
+        "savings": {
+            "title": "Secure Savings",
+            "description": "Your savings grow safely with attractive interest rates and full deposit guarantee."
+        },
+        "payments": {
+            "title": "Easy Payments",
+            "description": "Fast and secure transfers with our modern payment solutions and app."
+        },
+        "support": {
+            "title": "24/7 Support",
+            "description": "Our dedicated customer service team is ready to help you around the clock."
+        }
+    },
+    "loans_section": {
+        "title": "Loans with Low Rates",
+        "subtitle": "Make your dreams a reality with our competitive loan offers.",
+        "rate_label": "From only",
+        "rate_value": "3.95%",
+        "rate_suffix": "APR",
+        "benefits": [
+            "No hidden fees",
+            "Fast approval",
+            "Flexible repayment"
+        ],
+        "cta": "Apply Now"
+    },
+    "footer": {
+        "description": "Nordic Bank - Your modern partner in all financial matters. We're here to help you reach your financial goals.",
+        "quick_links": "Quick Links",
+        "contact": "Contact",
+        "follow_us": "Follow Us",
+        "address": "Vestergade 42, 1456 Copenhagen K",
+        "phone": "+45 70 12 34 56",
+        "email": "contact@nordicbank.com",
+        "copyright": "© 2024 Nordic Bank. All rights reserved."
+    },
+    "language": {
+        "label": "Language",
+        "da": "Dansk",
+        "en": "English"
+    },
+    "login": {
+        "title": "Login to your account",
+        "subtitle": "Welcome back! Enter your details to access your account.",
+        "email_label": "Email",
+        "email_placeholder": "your@email.com",
+        "password_label": "Password",
+        "password_placeholder": "Enter your password",
+        "remember_me": "Remember me",
+        "forgot_password": "Forgot password?",
+        "submit": "Login",
+        "no_account": "Don't have an account?",
+        "register": "Create account",
+        "coming_soon": {
+            "title": "Coming Soon",
+            "message": "We're working hard to get online banking ready for you. Join our waitlist to be the first to know when we launch.",
+            "notify_placeholder": "Enter your email",
+            "notify_button": "Notify me"
+        }
+    }
+}

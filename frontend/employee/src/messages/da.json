@@ -1,0 +1,90 @@
+{
+    "nav": {
+        "home": "Dashboard",
+        "customers": "Kunder",
+        "accounts": "Konti",
+        "transactions": "Transaktioner",
+        "support": "Support",
+        "reports": "Rapporter"
+    },
+    "dashboard": {
+        "greeting": "God {timeOfDay}, {name}",
+        "morning": "morgen",
+        "afternoon": "eftermiddag",
+        "evening": "aften",
+        "metrics": {
+            "customersServed": "Kunder betjent i dag",
+            "pendingTasks": "Afventende opgaver",
+            "activeAccounts": "Aktive konti",
+            "recentActivity": "Seneste aktivitet"
+        },
+        "customerSearch": {
+            "title": "Kundesøgning",
+            "placeholder": "Søg efter navn, kontonummer eller telefon...",
+            "noResults": "Ingen kunder fundet"
+        },
+        "activityFeed": {
+            "title": "Aktivitetsfeed",
+            "noActivity": "Ingen nylig aktivitet"
+        },
+        "quickActions": {
+            "title": "Hurtige handlinger",
+            "newCustomer": "Ny kunde",
+            "newAccount": "Ny konto",
+            "viewReports": "Se rapporter"
+        },
+        "topCustomers": {
+            "title": "Top kunder (denne uge)",
+            "viewAll": "Se alle"
+        }
+    },
+    "customers": {
+        "title": "Kunder",
+        "search": "Søg kunder",
+        "details": "Kunde detaljer",
+        "accountNumber": "Kontonummer",
+        "phone": "Telefon",
+        "email": "Email",
+        "balance": "Saldo",
+        "status": "Status",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "viewDetails": "Se detaljer"
+    },
+    "accounts": {
+        "title": "Konti",
+        "accountType": "Kontotype",
+        "checking": "Checkkonto",
+        "savings": "Opsparingskonto",
+        "balance": "Saldo",
+        "status": "Status"
+    },
+    "transactions": {
+        "title": "Transaktioner",
+        "date": "Dato",
+        "amount": "Beløb",
+        "type": "Type",
+        "description": "Beskrivelse",
+        "deposit": "Indbetaling",
+        "withdrawal": "Hævning",
+        "transfer": "Overførsel",
+        "filter": "Filtrer"
+    },
+    "support": {
+        "title": "Support værktøjer",
+        "customerIssues": "Kunde problemer",
+        "guides": "Vejledninger",
+        "knowledgeBase": "Vidensbase"
+    },
+    "common": {
+        "loading": "Indlæser...",
+        "error": "Fejl",
+        "save": "Gem",
+        "cancel": "Annuller",
+        "delete": "Slet",
+        "edit": "Rediger",
+        "view": "Vis",
+        "close": "Luk",
+        "search": "Søg"
+    }
+}

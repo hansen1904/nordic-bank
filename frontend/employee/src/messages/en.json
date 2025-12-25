@@ -1,0 +1,90 @@
+{
+    "nav": {
+        "home": "Dashboard",
+        "customers": "Customers",
+        "accounts": "Accounts",
+        "transactions": "Transactions",
+        "support": "Support",
+        "reports": "Reports"
+    },
+    "dashboard": {
+        "greeting": "Good {timeOfDay}, {name}",
+        "morning": "morning",
+        "afternoon": "afternoon",
+        "evening": "evening",
+        "metrics": {
+            "customersServed": "Customers served today",
+            "pendingTasks": "Pending tasks",
+            "activeAccounts": "Active accounts",
+            "recentActivity": "Recent activity"
+        },
+        "customerSearch": {
+            "title": "Customer search",
+            "placeholder": "Search by name, account number, or phone...",
+            "noResults": "No customers found"
+        },
+        "activityFeed": {
+            "title": "Activity feed",
+            "noActivity": "No recent activity"
+        },
+        "quickActions": {
+            "title": "Quick actions",
+            "newCustomer": "New customer",
+            "newAccount": "New account",
+            "viewReports": "View reports"
+        },
+        "topCustomers": {
+            "title": "Top customers (this week)",
+            "viewAll": "View all"
+        }
+    },
+    "customers": {
+        "title": "Customers",
+        "search": "Search customers",
+        "details": "Customer details",
+        "accountNumber": "Account number",
+        "phone": "Phone",
+        "email": "Email",
+        "balance": "Balance",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "viewDetails": "View details"
+    },
+    "accounts": {
+        "title": "Accounts",
+        "accountType": "Account type",
+        "checking": "Checking",
+        "savings": "Savings",
+        "balance": "Balance",
+        "status": "Status"
+    },
+    "transactions": {
+        "title": "Transactions",
+        "date": "Date",
+        "amount": "Amount",
+        "type": "Type",
+        "description": "Description",
+        "deposit": "Deposit",
+        "withdrawal": "Withdrawal",
+        "transfer": "Transfer",
+        "filter": "Filter"
+    },
+    "support": {
+        "title": "Support tools",
+        "customerIssues": "Customer issues",
+        "guides": "Guides",
+        "knowledgeBase": "Knowledge base"
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "view": "View",
+        "close": "Close",
+        "search": "Search"
+    }
+}

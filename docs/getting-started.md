@@ -6,7 +6,6 @@
 - [Observability](#observability)
 - [Database](#database)
   - [Setup Connection to Database](#setup-connection-to-database)
-- [Conclusion](#conclusion)
 
 ## Prerequisites
 - Docker Desktop installed
@@ -58,7 +57,5 @@ If this is your first time going there, you should set up a connection to the da
    Remember to toggle "Save password?".
 
 5. Click Save, and you can now see the schemas that have been created.
-
-## Conclusion
 
 You have now set up the Nordic Bank application locally. For further instructions, refer to the project's documentation.
