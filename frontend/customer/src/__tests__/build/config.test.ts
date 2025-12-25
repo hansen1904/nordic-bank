@@ -1,5 +1,5 @@
 // Build verification tests
-import pkg from '../../package.json';
+import pkg from '../../../package.json';
 
 describe('Build Configuration', () => {
     it('should have correct package name', () => {
