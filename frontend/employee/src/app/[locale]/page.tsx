@@ -49,9 +49,9 @@ export default function DashboardPage() {
                 {/* Quick Actions */}
                 <DashboardCard title={t('dashboard.quickActions.title')}>
                     <div className="grid grid-1" style={{ gap: 'var(--spacing-3)' }}>
-                        <button className="btn btn-primary" style={{ justifyContent: 'flex-start' }}>
+                        <Link href="/customers/onboard" className="btn btn-primary" style={{ justifyContent: 'flex-start' }}>
                             {t('dashboard.quickActions.newCustomer')}
-                        </button>
+                        </Link>
                         <button className="btn btn-secondary" style={{ justifyContent: 'flex-start' }}>
                             {t('dashboard.quickActions.newAccount')}
                         </button>

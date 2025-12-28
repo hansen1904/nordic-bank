@@ -3,8 +3,9 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Inter } from 'next/font/google';
-import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { AuthProvider } from '@/context/AuthContext';
+import ConditionalHeader from '../../components/layout/ConditionalHeader';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -44,12 +45,14 @@ export default async function LocaleLayout({ children, params }: Props) {
     const messages = await getMessages();
 
     return (
-        <html lang={locale}>
+        <html lang={locale} suppressHydrationWarning>
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
-                    <Header />
-                    <main>{children}</main>
-                    <Footer />
+                    <AuthProvider>
+                        <ConditionalHeader />
+                        <main>{children}</main>
+                        <Footer />
+                    </AuthProvider>
                 </NextIntlClientProvider>
             </body>
         </html>

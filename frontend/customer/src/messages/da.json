@@ -65,22 +65,93 @@
         "en": "English"
     },
     "login": {
-        "title": "Log ind på din konto",
-        "subtitle": "Velkommen tilbage! Indtast dine oplysninger for at få adgang til din konto.",
-        "email_label": "E-mail",
-        "email_placeholder": "din@email.dk",
-        "password_label": "Adgangskode",
-        "password_placeholder": "Indtast din adgangskode",
-        "remember_me": "Husk mig",
-        "forgot_password": "Glemt adgangskode?",
-        "submit": "Log ind",
-        "no_account": "Har du ikke en konto?",
-        "register": "Opret konto",
+        "title": "Login",
+        "subtitle": "Adgang til din konto",
+        "form": {
+            "email": "E-mail",
+            "email_or_username": "E-mail eller Brugernavn",
+            "password": "Adgangskode",
+            "submit": "Log ind"
+        },
+        "links": {
+            "forgot_password": "Glemt adgangskode?",
+            "no_account": "Har du ikke en konto?",
+            "register": "Tilmeld dig her"
+        },
+        "errors": {
+            "invalid_credentials": "Ugyldig e-mail eller adgangskode"
+        },
         "coming_soon": {
             "title": "Kommer Snart",
             "message": "Vi arbejder hårdt på at gøre online banking klar til dig. Tilmeld dig vores venteliste for at blive den første til at vide, når vi lancerer.",
             "notify_placeholder": "Indtast din e-mail",
             "notify_button": "Giv mig besked"
         }
+    },
+    "register": {
+        "title": "Opret din konto",
+        "subtitle": "Bliv medlem af Nordic Bank i dag og oplev moderne bankservice.",
+        "username_label": "Brugernavn",
+        "username_placeholder": "Vælg et brugernavn",
+        "first_name_label": "Fornavn",
+        "first_name_placeholder": "Hans",
+        "last_name_label": "Efternavn",
+        "last_name_placeholder": "Hansen",
+        "email_label": "E-mail",
+        "email_placeholder": "hans.hansen@eksempel.dk",
+        "password_label": "Adgangskode",
+        "password_placeholder": "Minimum 8 tegn",
+        "submit": "Opret Konto",
+        "already_have_account": "Har du allerede en konto?",
+        "login": "Log ind her"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Velkommen tilbage",
+        "accounts": "Mine Konti",
+        "transactions": {
+            "title": "Seneste Transaktioner",
+            "search": "Søg transaktioner",
+            "filter": "Filtrer",
+            "inflow": "Indgående",
+            "outflow": "Udgående"
+        }
+    },
+    "navigation": {
+        "overview": "Oversigt",
+        "accounts": "Konti",
+        "loans": "Lån",
+        "support": "Support",
+        "logout": "Log ud"
+    },
+    "accounts": {
+        "title": "Mine Konti",
+        "balance": "Saldo",
+        "accountNumber": "Kontonummer",
+        "type": "Type",
+        "status": "Status",
+        "noAccounts": "Ingen konti fundet",
+        "viewDetails": "Se Detaljer"
+    },
+    "loans": {
+        "title": "Mine Lån",
+        "activeLoans": "Aktive Lån",
+        "loanAmount": "Lånebeløb",
+        "interestRate": "Rente",
+        "remainingBalance": "Resterende Saldo",
+        "nextPayment": "Næste Betaling",
+        "noLoans": "Du har ingen aktive lån",
+        "applyForLoan": "Ansøg om Lån"
+    },
+    "support": {
+        "title": "Kundesupport",
+        "contactUs": "Kontakt Os",
+        "reportIssue": "Rapporter et Problem",
+        "subject": "Emne",
+        "message": "Besked",
+        "send": "Send Besked",
+        "successMessage": "Din besked er blevet sendt!",
+        "issueType": "Problemtype",
+        "description": "Beskrivelse"
     }
 }

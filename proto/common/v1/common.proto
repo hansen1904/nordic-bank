@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package common.v1;
+
+option go_package = "nordic-bank/pkg/pb/common/v1";
+
+import "google/protobuf/timestamp.proto";
+
+// Common error response
+message Error {
+  string code = 1;
+  string message = 2;
+  repeated FieldError details = 3;
+}
+
+message FieldError {
+  string field = 1;
+  string message = 2;
+}
+
+// Pagination request
+message PaginationRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+// Pagination response
+message PaginationResponse {
+  int32 page = 1;
+  int32 page_size = 2;
+  int32 total_items = 3;
+  int32 total_pages = 4;
+}
+
+// Money representation
+message Money {
+  int64 amount = 1;      // Amount in smallest currency unit (e.g., øre)
+  string currency = 2;   // ISO 4217 currency code (e.g., "DKK")
+}
+
+// Address
+message Address {
+  string street = 1;
+  string city = 2;
+  string postal_code = 3;
+  string country = 4;
+}

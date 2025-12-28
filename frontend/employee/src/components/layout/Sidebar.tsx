@@ -1,13 +1,21 @@
 'use client';
 
-import { Home, Users, CreditCard, ArrowLeftRight, HeadphonesIcon, FileText } from 'lucide-react';
+import { Home, Users, CreditCard, ArrowLeftRight, HeadphonesIcon, FileText, LogOut } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Sidebar() {
     const t = useTranslations('nav');
     const pathname = usePathname();
+    const router = useRouter();
+    const { logout } = useAuth();
+
+    const handleLogout = () => {
+        logout();
+        router.push('/login');
+    };
 
     const navItems = [
         { href: '/', icon: Home, label: t('home') },
@@ -45,6 +53,23 @@ export default function Sidebar() {
                     );
                 })}
             </nav>
+
+            <div className="sidebar-footer" style={{ marginTop: 'auto', padding: 'var(--spacing-4)' }}>
+                <button
+                    onClick={handleLogout}
+                    className="nav-item"
+                    style={{
+                        width: '100%',
+                        background: 'none',
+                        border: 'none',
+                        color: 'var(--color-slate-400)',
+                        cursor: 'pointer'
+                    }}
+                >
+                    <LogOut size={20} />
+                    <span>{t('logout')}</span>
+                </button>
+            </div>
         </aside>
     );
 }

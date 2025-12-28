@@ -1,0 +1,25 @@
+
+> customer@0.1.0 lint
+> eslint src --ext .ts,.tsx
+
+(node:8684) ESLintIgnoreWarning: The ".eslintignore" file is no longer supported. Switch to using the "ignores" property in "eslint.config.js": https://eslint.org/docs/latest/use/configure/migration-guide#ignoring-files
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\dashboard\accounts\[id]\page.tsx
+  5:10  warning  'useTranslations' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\login\LoginContent.test.tsx
+  14:43  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  29:44  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  61:15  warning  'submitButton' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\register\RegisterContent.test.tsx
+  14:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Projects\nordic-bank\frontend\customer\src\context\AuthContext.tsx
+  45:9  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+Ô£û 7 problems (4 errors, 3 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

@@ -65,22 +65,93 @@
         "en": "English"
     },
     "login": {
-        "title": "Login to your account",
-        "subtitle": "Welcome back! Enter your details to access your account.",
-        "email_label": "Email",
-        "email_placeholder": "your@email.com",
-        "password_label": "Password",
-        "password_placeholder": "Enter your password",
-        "remember_me": "Remember me",
-        "forgot_password": "Forgot password?",
-        "submit": "Login",
-        "no_account": "Don't have an account?",
-        "register": "Create account",
+        "title": "Login",
+        "subtitle": "Access your account",
+        "form": {
+            "email": "Email",
+            "email_or_username": "Email or Username",
+            "password": "Password",
+            "submit": "Login"
+        },
+        "links": {
+            "forgot_password": "Forgot password?",
+            "no_account": "Don't have an account?",
+            "register": "Register here"
+        },
+        "errors": {
+            "invalid_credentials": "Invalid email or password"
+        },
         "coming_soon": {
             "title": "Coming Soon",
             "message": "We're working hard to get online banking ready for you. Join our waitlist to be the first to know when we launch.",
             "notify_placeholder": "Enter your email",
             "notify_button": "Notify me"
         }
+    },
+    "register": {
+        "title": "Create your account",
+        "subtitle": "Join Nordic Bank today and experience modern banking.",
+        "username_label": "Username",
+        "username_placeholder": "Choose a username",
+        "first_name_label": "First Name",
+        "first_name_placeholder": "John",
+        "last_name_label": "Last Name",
+        "last_name_placeholder": "Doe",
+        "email_label": "Email",
+        "email_placeholder": "john.doe@example.com",
+        "password_label": "Password",
+        "password_placeholder": "Minimum 8 characters",
+        "submit": "Create Account",
+        "already_have_account": "Already have an account?",
+        "login": "Login here"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome back",
+        "accounts": "My Accounts",
+        "transactions": {
+            "title": "Recent Transactions",
+            "search": "Search transactions",
+            "filter": "Filter",
+            "inflow": "Inflow",
+            "outflow": "Outflow"
+        }
+    },
+    "navigation": {
+        "overview": "Overview",
+        "accounts": "Accounts",
+        "loans": "Loans",
+        "support": "Support",
+        "logout": "Logout"
+    },
+    "accounts": {
+        "title": "My Accounts",
+        "balance": "Balance",
+        "accountNumber": "Account Number",
+        "type": "Type",
+        "status": "Status",
+        "noAccounts": "No accounts found",
+        "viewDetails": "View Details"
+    },
+    "loans": {
+        "title": "My Loans",
+        "activeLoans": "Active Loans",
+        "loanAmount": "Loan Amount",
+        "interestRate": "Interest Rate",
+        "remainingBalance": "Remaining Balance",
+        "nextPayment": "Next Payment",
+        "noLoans": "You have no active loans",
+        "applyForLoan": "Apply for Loan"
+    },
+    "support": {
+        "title": "Customer Support",
+        "contactUs": "Contact Us",
+        "reportIssue": "Report an Issue",
+        "subject": "Subject",
+        "message": "Message",
+        "send": "Send Message",
+        "successMessage": "Your message has been sent successfully!",
+        "issueType": "Issue Type",
+        "description": "Description"
     }
 }
