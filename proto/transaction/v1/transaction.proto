@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package transaction.v1;
+
+option go_package = "nordic-bank/pkg/pb/transaction/v1";
+
+import "google/protobuf/timestamp.proto";
+import "common/v1/common.proto";
+
+service TransactionService {
+  // Create a new transfer between accounts
+  rpc CreateTransfer(CreateTransferRequest) returns (CreateTransferResponse);
+  
+  // Get transaction details
+  rpc GetTransaction(GetTransactionRequest) returns (GetTransactionResponse);
+  
+  // List transactions for an account
+  rpc ListTransactions(ListTransactionsRequest) returns (ListTransactionsResponse);
+  
+  // Get transaction stats
+  rpc GetTransactionStats(GetTransactionStatsRequest) returns (GetTransactionStatsResponse);
+}
+
+message Transaction {
+  string id = 1;
+  string source_account_id = 2;
+  string destination_account_id = 3;
+  common.v1.Money amount = 4;
+  string type = 5; // transfer, deposit, withdrawal, etc.
+  string status = 6; // pending, completed, failed, cancelled
+  string reference = 7;
+  string description = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  string idempotency_key = 11;
+}
+
+message CreateTransferRequest {
+  string source_account_id = 1;
+  string destination_account_id = 2;
+  common.v1.Money amount = 3;
+  string reference = 4;
+  string description = 5;
+  string idempotency_key = 6;
+}
+
+message CreateTransferResponse {
+  Transaction transaction = 1;
+}
+
+message GetTransactionRequest {
+  string transaction_id = 1;
+}
+
+message GetTransactionResponse {
+  Transaction transaction = 1;
+}
+
+message ListTransactionsRequest {
+  string account_id = 1;
+  common.v1.PaginationRequest pagination = 2;
+}
+
+message ListTransactionsResponse {
+  repeated Transaction transactions = 1;
+  common.v1.PaginationResponse pagination = 2;
+}
+
+message GetTransactionStatsRequest {
+  string account_id = 1;
+  google.protobuf.Timestamp start_date = 2;
+  google.protobuf.Timestamp end_date = 3;
+}
+
+message GetTransactionStatsResponse {
+  common.v1.Money total_inflow = 1;
+  common.v1.Money total_outflow = 2;
+  int32 count = 3;
+}

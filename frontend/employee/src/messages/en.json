@@ -5,7 +5,18 @@
         "accounts": "Accounts",
         "transactions": "Transactions",
         "support": "Support",
-        "reports": "Reports"
+        "reports": "Reports",
+        "logout": "Logout"
+    },
+    "login": {
+        "title": "Employee Login",
+        "subtitle": "Nordic Bank Portal",
+        "email_label": "Email",
+        "email_placeholder": "admin@nordicbank.com",
+        "password_label": "Password",
+        "password_placeholder": "Enter password",
+        "submit": "Sign In",
+        "error": "Access denied. Please check your credentials."
     },
     "dashboard": {
         "greeting": "Good {timeOfDay}, {name}",
@@ -40,6 +51,7 @@
     },
     "customers": {
         "title": "Customers",
+        "name": "Name",
         "search": "Search customers",
         "details": "Customer details",
         "accountNumber": "Account number",

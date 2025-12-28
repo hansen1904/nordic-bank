@@ -1,0 +1,2429 @@
+
+> customer@0.1.0 test
+> jest RegisterContent
+
+(node:24628) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL src/app/[locale]/register/RegisterContent.test.tsx (13.051 s)
+  RegisterContent - P1 Registration Tests
+    ├ù should successfully register a new customer (2153 ms)
+    ├ù should send registration request without authentication (1742 ms)
+    ├ù should handle registration errors (1674 ms)
+    ÔêÜ should validate required fields (60 ms)
+    ├ù should disable form during registration (1689 ms)
+    ├ù should use correct locale in redirect URL (1661 ms)
+    ├ù should accept various username formats (1751 ms)
+    ├ù should handle network errors gracefully (1653 ms)
+
+  ÔùÅ RegisterContent - P1 Registration Tests ÔÇ║ should successfully register a new customer
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "http://localhost:8081/api/v1/auth/register", ObjectContaining {"body": "{\"firstName\":\"Test\",\"lastName\":\"User\",\"username\":\"testuser\",\"email\":\"test@example.com\",\"password\":\"Password123!\"}", "method": "POST"}
+    Received
+           1: "http://localhost:8081/api/v1/auth/register", {"body": "{\"username\":\"testuser\",\"email\":\"test@example.com\",\"password\":\"Password123!\",\"role\":\"customer\"}", "headers": {}, "method": "POST"}
+           2: "http://localhost:8082/api/v1/customers/", {"body": "{\"user_id\":\"user-123\",\"first_name\":\"Test\",\"last_name\":\"User\",\"email\":\"test@example.com\",\"phone\":\"N/A\",\"date_of_birth\":\"1990-01-01\",\"address\":{\"street\":\"N/A\",\"city\":\"N/A\",\"postal_code\":\"0000\",\"country\":\"Denmark\"}}", "headers": {}, "method": "POST"}
+           3: "http://localhost:8081/api/v1/auth/login", {"body": "{\"email\":\"test@example.com\",\"password\":\"Password123!\"}", "headers": {}, "method": "POST"}
+
+    Number of calls: 3
+
+    Ignored nodes: comments, script, style
+    <html>
+      <head />
+      <body>
+        <div>
+          <div
+            class="registerPage"
+          >
+            <div
+              class="background"
+            />
+            <div
+              class="container registerContainer"
+            >
+              <div
+                class="registerCard"
+              >
+                <div
+                  class="topNav"
+                >
+                  <a
+                    href="/en/login"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="lucide lucide-arrow-left"
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="m12 19-7-7 7-7"
+                      />
+                      <path
+                        d="M19 12H5"
+                      />
+                    </svg>
+                    <span>
+                      Login here
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="registerFormContainer"
+                >
+                  <h3
+                    class="title"
+                  >
+                    Create Account
+                  </h3>
+                  <p
+                    class="subtitle"
+                  >
+                    Join Nordic Bank
+                  </p>
+                  <form
+                    class="form"
+                  >
+                    <div
+                      class="nameRow"
+                    >
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          first_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="firstName"
+                            placeholder="First Name"
+                            required=""
+                            type="text"
+                            value="Test"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          last_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="lastName"
+                            placeholder="Last Name"
+                            required=""
+                            type="text"
+                            value="User"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        username_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="username"
+                          placeholder="Username"
+                          required=""
+                          type="text"
+                          value="testuser"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        email_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-mail inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                          />
+                          <rect
+                            height="16"
+                            rx="2"
+                            width="20"
+                            x="2"
+                            y="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="email"
+                          placeholder="Email"
+                          required=""
+                          type="email"
+                          value="test@example.com"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        password_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-lock inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            height="11"
+                            rx="2"
+                            ry="2"
+                            width="18"
+                            x="3"
+                            y="11"
+                          />
+                          <path
+                            d="M7 11V7a5 5 0 0 1 10 0v4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          minlength="8"
+                          name="password"
+                          placeholder="Password"
+                          required=""
+                          type="password"
+                          value="Password123!"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-primary submitButton"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-shield-check"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        style="margin-right: 8px;"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                        />
+                        <path
+                          d="m9 12 2 2 4-4"
+                        />
+                      </svg>
+                      Create Account
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+       98 |         // ASSERT: Should call API with correct data
+       99 |         await waitFor(() => {
+    > 100 |             expect(global.fetch).toHaveBeenCalledWith(
+          |                                  ^
+      101 |                 'http://localhost:8081/api/v1/auth/register',
+      102 |                 expect.objectContaining({
+      103 |                     method: 'POST',
+
+      at toHaveBeenCalledWith (src/app/[locale]/register/RegisterContent.test.tsx:100:34)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+  ÔùÅ RegisterContent - P1 Registration Tests ÔÇ║ should send registration request without authentication
+
+    TypeError: Cannot read properties of undefined (reading '1')
+
+    Ignored nodes: comments, script, style
+    <html>
+      <head />
+      <body>
+        <div>
+          <div
+            class="registerPage"
+          >
+            <div
+              class="background"
+            />
+            <div
+              class="container registerContainer"
+            >
+              <div
+                class="registerCard"
+              >
+                <div
+                  class="topNav"
+                >
+                  <a
+                    href="/en/login"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="lucide lucide-arrow-left"
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="m12 19-7-7 7-7"
+                      />
+                      <path
+                        d="M19 12H5"
+                      />
+                    </svg>
+                    <span>
+                      Login here
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="registerFormContainer"
+                >
+                  <h3
+                    class="title"
+                  >
+                    Create Account
+                  </h3>
+                  <p
+                    class="subtitle"
+                  >
+                    Join Nordic Bank
+                  </p>
+                  <form
+                    class="form"
+                  >
+                    <div
+                      class="nameRow"
+                    >
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          first_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="firstName"
+                            placeholder="First Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          last_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="lastName"
+                            placeholder="Last Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        username_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="username"
+                          placeholder="Username"
+                          required=""
+                          type="text"
+                          value="newuser"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        email_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-mail inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                          />
+                          <rect
+                            height="16"
+                            rx="2"
+                            width="20"
+                            x="2"
+                            y="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="email"
+                          placeholder="Email"
+                          required=""
+                          type="email"
+                          value="new@test.com"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        password_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-lock inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            height="11"
+                            rx="2"
+                            ry="2"
+                            width="18"
+                            x="3"
+                            y="11"
+                          />
+                          <path
+                            d="M7 11V7a5 5 0 0 1 10 0v4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          minlength="8"
+                          name="password"
+                          placeholder="Password"
+                          required=""
+                          type="password"
+                          value="SecurePass123!"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-primary submitButton"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-shield-check"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        style="margin-right: 8px;"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                        />
+                        <path
+                          d="m9 12 2 2 4-4"
+                        />
+                      </svg>
+                      Create Account
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+      142 |         await waitFor(() => {
+      143 |             const fetchCall = (global.fetch as jest.Mock).mock.calls[0];
+    > 144 |             const headers = fetchCall[1].headers;
+          |                                      ^
+      145 |             expect(headers['Authorization']).toBeUndefined();
+      146 |         });
+      147 |     });
+
+      at src/app/[locale]/register/RegisterContent.test.tsx:144:38
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+  ÔùÅ RegisterContent - P1 Registration Tests ÔÇ║ should handle registration errors
+
+    Unable to find an element with the text: /username already exists/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="registerPage"
+        >
+          <div
+            class="background"
+          />
+          <div
+            class="container registerContainer"
+          >
+            <div
+              class="registerCard"
+            >
+              <div
+                class="topNav"
+              >
+                <a
+                  href="/en/login"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-arrow-left"
+                    fill="none"
+                    height="20"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m12 19-7-7 7-7"
+                    />
+                    <path
+                      d="M19 12H5"
+                    />
+                  </svg>
+                  <span>
+                    Login here
+                  </span>
+                </a>
+              </div>
+              <div
+                class="registerFormContainer"
+              >
+                <h3
+                  class="title"
+                >
+                  Create Account
+                </h3>
+                <p
+                  class="subtitle"
+                >
+                  Join Nordic Bank
+                </p>
+                <form
+                  class="form"
+                >
+                  <div
+                    class="nameRow"
+                  >
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        first_name_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="firstName"
+                          placeholder="First Name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        last_name_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="lastName"
+                          placeholder="Last Name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="formGroup"
+                  >
+                    <label
+                      class="formLabel"
+                    >
+                      username_label
+                    </label>
+                    <div
+                      class="inputWrapper"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-user inputIcon"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                        />
+                        <circle
+                          cx="12"
+                          cy="7"
+                          r="4"
+                        />
+                      </svg>
+                      <input
+                        class="formInput"
+                        name="username"
+                        placeholder="Username"
+                        required=""
+                        type="text"
+                        value="existing"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="formGroup"
+                  >
+                    <label
+                      class="formLabel"
+                    >
+                      email_label
+                    </label>
+                    <div
+                      class="inputWrapper"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-mail inputIcon"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                        />
+                        <rect
+                          height="16"
+                          rx="2"
+                          width="20"
+                          x="2"
+                          y="4"
+                        />
+                      </svg>
+                      <input
+                        class="formInput"
+                        name="email"
+                        placeholder="Email"
+                        required=""
+                        type="email"
+                        value="test@test.com"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="formGroup"
+                  >
+                    <label
+                      class="formLabel"
+                    >
+                      password_label
+                    </label>
+                    <div
+                      class="inputWrapper"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-lock inputIcon"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect
+                          height="11"
+                          rx="2"
+                          ry="2"
+                          width="18"
+                          x="3"
+                          y="11"
+                        />
+                        <path
+                          d="M7 11V7a5 5 0 0 1 10 0v4"
+                        />
+                      </svg>
+                      <input
+                        class="formInput"
+                        minlength="8"
+                        name="password"
+                        placeholder="Password"
+                        required=""
+                        type="password"
+                        value="Pass123!"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-primary submitButton"
+                    type="submit"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="lucide lucide-shield-check"
+                      fill="none"
+                      height="18"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      style="margin-right: 8px;"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                      />
+                      <path
+                        d="m9 12 2 2 4-4"
+                      />
+                    </svg>
+                    Create Account
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      169 |
+      170 |         // ASSERT: Should display error message
+    > 171 |         await waitFor(() => {
+          |                      ^
+      172 |             expect(screen.getByText(/username already exists/i)).toBeInTheDocument();
+      173 |         });
+      174 |
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (src/app/[locale]/register/RegisterContent.test.tsx:171:22)
+
+  ÔùÅ RegisterContent - P1 Registration Tests ÔÇ║ should disable form during registration
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Ignored nodes: comments, script, style
+    <html>
+      <head />
+      <body>
+        <div>
+          <div
+            class="registerPage"
+          >
+            <div
+              class="background"
+            />
+            <div
+              class="container registerContainer"
+            >
+              <div
+                class="registerCard"
+              >
+                <div
+                  class="topNav"
+                >
+                  <a
+                    href="/en/login"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="lucide lucide-arrow-left"
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="m12 19-7-7 7-7"
+                      />
+                      <path
+                        d="M19 12H5"
+                      />
+                    </svg>
+                    <span>
+                      Login here
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="registerFormContainer"
+                >
+                  <h3
+                    class="title"
+                  >
+                    Create Account
+                  </h3>
+                  <p
+                    class="subtitle"
+                  >
+                    Join Nordic Bank
+                  </p>
+                  <form
+                    class="form"
+                  >
+                    <div
+                      class="nameRow"
+                    >
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          first_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="firstName"
+                            placeholder="First Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          last_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="lastName"
+                            placeholder="Last Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        username_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="username"
+                          placeholder="Username"
+                          required=""
+                          type="text"
+                          value="testuser"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        email_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-mail inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                          />
+                          <rect
+                            height="16"
+                            rx="2"
+                            width="20"
+                            x="2"
+                            y="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="email"
+                          placeholder="Email"
+                          required=""
+                          type="email"
+                          value="test@test.com"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        password_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-lock inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            height="11"
+                            rx="2"
+                            ry="2"
+                            width="18"
+                            x="3"
+                            y="11"
+                          />
+                          <path
+                            d="M7 11V7a5 5 0 0 1 10 0v4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          minlength="8"
+                          name="password"
+                          placeholder="Password"
+                          required=""
+                          type="password"
+                          value="Pass123!"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-primary submitButton"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-shield-check"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        style="margin-right: 8px;"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                        />
+                        <path
+                          d="m9 12 2 2 4-4"
+                        />
+                      </svg>
+                      Create Account
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+      220 |         // ASSERT: Form should be disabled during submission
+      221 |         await waitFor(() => {
+    > 222 |             expect(usernameInput.disabled).toBe(true);
+          |                                            ^
+      223 |             expect(submitButton.disabled).toBe(true);
+      224 |         });
+      225 |     });
+
+      at toBe (src/app/[locale]/register/RegisterContent.test.tsx:222:44)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+  ÔùÅ RegisterContent - P1 Registration Tests ÔÇ║ should use correct locale in redirect URL
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "/da/dashboard"
+
+    Number of calls: 0
+
+    Ignored nodes: comments, script, style
+    <html>
+      <head />
+      <body>
+        <div>
+          <div
+            class="registerPage"
+          >
+            <div
+              class="background"
+            />
+            <div
+              class="container registerContainer"
+            >
+              <div
+                class="registerCard"
+              >
+                <div
+                  class="topNav"
+                >
+                  <a
+                    href="/da/login"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="lucide lucide-arrow-left"
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="m12 19-7-7 7-7"
+                      />
+                      <path
+                        d="M19 12H5"
+                      />
+                    </svg>
+                    <span>
+                      Login here
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="registerFormContainer"
+                >
+                  <h3
+                    class="title"
+                  >
+                    Create Account
+                  </h3>
+                  <p
+                    class="subtitle"
+                  >
+                    Join Nordic Bank
+                  </p>
+                  <form
+                    class="form"
+                  >
+                    <div
+                      class="nameRow"
+                    >
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          first_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="firstName"
+                            placeholder="First Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          last_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="lastName"
+                            placeholder="Last Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        username_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="username"
+                          placeholder="Username"
+                          required=""
+                          type="text"
+                          value="testuser"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        email_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-mail inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                          />
+                          <rect
+                            height="16"
+                            rx="2"
+                            width="20"
+                            x="2"
+                            y="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="email"
+                          placeholder="Email"
+                          required=""
+                          type="email"
+                          value="test@test.com"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        password_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-lock inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            height="11"
+                            rx="2"
+                            ry="2"
+                            width="18"
+                            x="3"
+                            y="11"
+                          />
+                          <path
+                            d="M7 11V7a5 5 0 0 1 10 0v4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          minlength="8"
+                          name="password"
+                          placeholder="Password"
+                          required=""
+                          type="password"
+                          value="Pass123!"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-primary submitButton"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-shield-check"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        style="margin-right: 8px;"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                        />
+                        <path
+                          d="m9 12 2 2 4-4"
+                        />
+                      </svg>
+                      Create Account
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+      261 |         // ASSERT: Should redirect to Danish login
+      262 |         await waitFor(() => {
+    > 263 |             expect(mockPush).toHaveBeenCalledWith('/da/dashboard');
+          |                              ^
+      264 |         });
+      265 |     });
+      266 |
+
+      at toHaveBeenCalledWith (src/app/[locale]/register/RegisterContent.test.tsx:263:30)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+  ÔùÅ RegisterContent - P1 Registration Tests ÔÇ║ should accept various username formats
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+    Ignored nodes: comments, script, style
+    <html>
+      <head />
+      <body>
+        <div>
+          <div
+            class="registerPage"
+          >
+            <div
+              class="background"
+            />
+            <div
+              class="container registerContainer"
+            >
+              <div
+                class="registerCard"
+              >
+                <div
+                  class="topNav"
+                >
+                  <a
+                    href="/en/login"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="lucide lucide-arrow-left"
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="m12 19-7-7 7-7"
+                      />
+                      <path
+                        d="M19 12H5"
+                      />
+                    </svg>
+                    <span>
+                      Login here
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="registerFormContainer"
+                >
+                  <h3
+                    class="title"
+                  >
+                    Create Account
+                  </h3>
+                  <p
+                    class="subtitle"
+                  >
+                    Join Nordic Bank
+                  </p>
+                  <form
+                    class="form"
+                  >
+                    <div
+                      class="nameRow"
+                    >
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          first_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="firstName"
+                            placeholder="First Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="formGroup"
+                      >
+                        <label
+                          class="formLabel"
+                        >
+                          last_name_label
+                        </label>
+                        <div
+                          class="inputWrapper"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="lucide lucide-user inputIcon"
+                            fill="none"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="7"
+                              r="4"
+                            />
+                          </svg>
+                          <input
+                            class="formInput"
+                            name="lastName"
+                            placeholder="Last Name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        username_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="username"
+                          placeholder="Username"
+                          required=""
+                          type="text"
+                          value="simpleuser"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        email_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-mail inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                          />
+                          <rect
+                            height="16"
+                            rx="2"
+                            width="20"
+                            x="2"
+                            y="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="email"
+                          placeholder="Email"
+                          required=""
+                          type="email"
+                          value="simpleuser@test.com"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        password_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-lock inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            height="11"
+                            rx="2"
+                            ry="2"
+                            width="18"
+                            x="3"
+                            y="11"
+                          />
+                          <path
+                            d="M7 11V7a5 5 0 0 1 10 0v4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          minlength="8"
+                          name="password"
+                          placeholder="Password"
+                          required=""
+                          type="password"
+                          value="Pass123!"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-primary submitButton"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-shield-check"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        style="margin-right: 8px;"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                        />
+                        <path
+                          d="m9 12 2 2 4-4"
+                        />
+                      </svg>
+                      Create Account
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+      296 |             // ASSERT: All username formats should be accepted
+      297 |             await waitFor(() => {
+    > 298 |                 expect(global.fetch).toHaveBeenCalled();
+          |                                      ^
+      299 |             });
+      300 |
+      301 |             unmount();
+
+      at toHaveBeenCalled (src/app/[locale]/register/RegisterContent.test.tsx:298:38)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+  ÔùÅ RegisterContent - P1 Registration Tests ÔÇ║ should handle network errors gracefully
+
+    Unable to find an element with the text: /network error|failed/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="registerPage"
+        >
+          <div
+            class="background"
+          />
+          <div
+            class="container registerContainer"
+          >
+            <div
+              class="registerCard"
+            >
+              <div
+                class="topNav"
+              >
+                <a
+                  href="/en/login"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-arrow-left"
+                    fill="none"
+                    height="20"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m12 19-7-7 7-7"
+                    />
+                    <path
+                      d="M19 12H5"
+                    />
+                  </svg>
+                  <span>
+                    Login here
+                  </span>
+                </a>
+              </div>
+              <div
+                class="registerFormContainer"
+              >
+                <h3
+                  class="title"
+                >
+                  Create Account
+                </h3>
+                <p
+                  class="subtitle"
+                >
+                  Join Nordic Bank
+                </p>
+                <form
+                  class="form"
+                >
+                  <div
+                    class="nameRow"
+                  >
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        first_name_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="firstName"
+                          placeholder="First Name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="formGroup"
+                    >
+                      <label
+                        class="formLabel"
+                      >
+                        last_name_label
+                      </label>
+                      <div
+                        class="inputWrapper"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="lucide lucide-user inputIcon"
+                          fill="none"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                          />
+                        </svg>
+                        <input
+                          class="formInput"
+                          name="lastName"
+                          placeholder="Last Name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="formGroup"
+                  >
+                    <label
+                      class="formLabel"
+                    >
+                      username_label
+                    </label>
+                    <div
+                      class="inputWrapper"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-user inputIcon"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                        />
+                        <circle
+                          cx="12"
+                          cy="7"
+                          r="4"
+                        />
+                      </svg>
+                      <input
+                        class="formInput"
+                        name="username"
+                        placeholder="Username"
+                        required=""
+                        type="text"
+                        value="testuser"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="formGroup"
+                  >
+                    <label
+                      class="formLabel"
+                    >
+                      email_label
+                    </label>
+                    <div
+                      class="inputWrapper"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-mail inputIcon"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                        />
+                        <rect
+                          height="16"
+                          rx="2"
+                          width="20"
+                          x="2"
+                          y="4"
+                        />
+                      </svg>
+                      <input
+                        class="formInput"
+                        name="email"
+                        placeholder="Email"
+                        required=""
+                        type="email"
+                        value="test@test.com"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="formGroup"
+                  >
+                    <label
+                      class="formLabel"
+                    >
+                      password_label
+                    </label>
+                    <div
+                      class="inputWrapper"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-lock inputIcon"
+                        fill="none"
+                        height="18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect
+                          height="11"
+                          rx="2"
+                          ry="2"
+                          width="18"
+                          x="3"
+                          y="11"
+                        />
+                        <path
+                          d="M7 11V7a5 5 0 0 1 10 0v4"
+                        />
+                      </svg>
+                      <input
+                        class="formInput"
+                        minlength="8"
+                        name="password"
+                        placeholder="Password"
+                        required=""
+                        type="password"
+                        value="Pass123!"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-primary submitButton"
+                    type="submit"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="lucide lucide-shield-check"
+                      fill="none"
+                      height="18"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      style="margin-right: 8px;"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                      />
+                      <path
+                        d="m9 12 2 2 4-4"
+                      />
+                    </svg>
+                    Create Account
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      322 |
+      323 |         // ASSERT: Should show error message
+    > 324 |         await waitFor(() => {
+          |                      ^
+      325 |             expect(screen.getByText(/network error|failed/i)).toBeInTheDocument();
+      326 |         });
+      327 |     });
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (src/app/[locale]/register/RegisterContent.test.tsx:324:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 1 passed, 8 total
+Snapshots:   0 total
+Time:        13.581 s
+Ran all test suites matching /RegisterContent/i.
