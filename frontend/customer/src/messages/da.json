@@ -74,9 +74,7 @@
             "submit": "Log ind"
         },
         "links": {
-            "forgot_password": "Glemt adgangskode?",
-            "no_account": "Har du ikke en konto?",
-            "register": "Tilmeld dig her"
+            "forgot_password": "Glemt adgangskode?"
         },
         "errors": {
             "invalid_credentials": "Ugyldig e-mail eller adgangskode"
@@ -153,5 +151,10 @@
         "successMessage": "Din besked er blevet sendt!",
         "issueType": "Problemtype",
         "description": "Beskrivelse"
+    },
+    "contact_page": {
+        "address_label": "Adresse",
+        "phone_label": "Telefon",
+        "email_label": "E-mail"
     }
 }

@@ -33,8 +33,6 @@ jest.mock('next-intl', () => ({
             'form.password': 'Password',
             'form.submit': 'Login',
             'links.forgot_password': 'Forgot password?',
-            'links.no_account': "Don't have an account?",
-            'links.register': 'Register here',
         };
         return translations[key] || key;
     },

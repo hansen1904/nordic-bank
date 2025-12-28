@@ -74,9 +74,7 @@
             "submit": "Login"
         },
         "links": {
-            "forgot_password": "Forgot password?",
-            "no_account": "Don't have an account?",
-            "register": "Register here"
+            "forgot_password": "Forgot password?"
         },
         "errors": {
             "invalid_credentials": "Invalid email or password"
@@ -153,5 +151,10 @@
         "successMessage": "Your message has been sent successfully!",
         "issueType": "Issue Type",
         "description": "Description"
+    },
+    "contact_page": {
+        "address_label": "Address",
+        "phone_label": "Phone",
+        "email_label": "Email"
     }
 }

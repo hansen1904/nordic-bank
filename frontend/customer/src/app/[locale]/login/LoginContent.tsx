@@ -116,12 +116,7 @@ export default function LoginContent({ locale }: { locale: string }) {
                             </button>
                         </form>
 
-                        <p className={styles.registerPrompt}>
-                            {t('links.no_account')}{' '}
-                            <Link href={`/${locale}/register`} className={styles.registerLink}>
-                                {t('links.register')}
-                            </Link>
-                        </p>
+
                     </div>
                 </div>
             </div>
