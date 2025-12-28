@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package account.v1;
+
+option go_package = "nordic-bank/pkg/pb/account/v1";
+
+import "google/protobuf/timestamp.proto";
+import "common/v1/common.proto";
+
+service AccountService {
+  // Create a new bank account
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse);
+  
+  // Get account by ID
+  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse);
+  
+  // Get accounts by customer ID
+  rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse);
+  
+  // Update account status (freeze/unfreeze/close)
+  rpc UpdateAccountStatus(UpdateAccountStatusRequest) returns (UpdateAccountStatusResponse);
+
+  // Adjust account balance (for transactions)
+  rpc AdjustBalance(AdjustBalanceRequest) returns (AdjustBalanceResponse);
+}
+
+message AdjustBalanceRequest {
+  string account_id = 1;
+  int64 amount_adjustment = 2; // Positive for credit, negative for debit
+  string reference = 3;
+  string description = 4;
+}
+
+message AdjustBalanceResponse {
+  common.v1.Money new_balance = 1;
+}
+
+message Account {
+  string id = 1;
+  string customer_id = 2;
+  string account_number = 3;
+  string account_name = 4;
+  string account_type = 5; // checking, savings, etc.
+  string currency = 6;
+  common.v1.Money balance = 7;
+  common.v1.Money available_balance = 8;
+  string status = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+message CreateAccountRequest {
+  string customer_id = 1;
+  string account_name = 2;
+  string account_type = 3;
+  string currency = 4;
+}
+
+message CreateAccountResponse {
+  Account account = 1;
+}
+
+message GetAccountRequest {
+  string account_id = 1;
+}
+
+message GetAccountResponse {
+  Account account = 1;
+}
+
+message ListAccountsRequest {
+  string customer_id = 1;
+}
+
+message ListAccountsResponse {
+  repeated Account accounts = 1;
+}
+
+message UpdateAccountStatusRequest {
+  string account_id = 1;
+  string status = 2;
+}
+
+message UpdateAccountStatusResponse {
+  Account account = 1;
+}

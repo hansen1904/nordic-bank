@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import Sidebar from '@/components/layout/Sidebar';
+import { AuthProvider } from '@/context/AuthContext';
 import "../globals.css";
 
 const inter = Inter({
@@ -17,6 +17,8 @@ export const metadata: Metadata = {
     description: "Employee dashboard for Nordic Bank customer service",
 };
 
+import DashboardWrapper from '@/components/layout/DashboardWrapper';
+
 export default async function LocaleLayout({
     children,
     params,
@@ -26,25 +28,21 @@ export default async function LocaleLayout({
 }) {
     const { locale } = await params;
 
-    // Ensure that the incoming locale is valid
     if (!routing.locales.includes(locale as typeof routing.locales[number])) {
         notFound();
     }
 
-    // Providing all messages to the client
-    // side is the easiest way to get started
     const messages = await getMessages();
 
     return (
-        <html lang={locale}>
+        <html lang={locale} suppressHydrationWarning>
             <body className={`${inter.variable}`}>
                 <NextIntlClientProvider messages={messages}>
-                    <div className="dashboard-layout">
-                        <Sidebar />
-                        <main className="main-content">
+                    <AuthProvider>
+                        <DashboardWrapper locale={locale}>
                             {children}
-                        </main>
-                    </div>
+                        </DashboardWrapper>
+                    </AuthProvider>
                 </NextIntlClientProvider>
             </body>
         </html>

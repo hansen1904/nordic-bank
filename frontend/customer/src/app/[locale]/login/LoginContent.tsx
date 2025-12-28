@@ -1,25 +1,44 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Mail, Lock, ArrowRight, ShieldCheck, Info } from 'lucide-react';
+import { Mail, Lock, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 import styles from './page.module.css';
 
 export default function LoginContent({ locale }: { locale: string }) {
     const t = useTranslations('login');
+    const { login } = useAuth();
+    const router = useRouter();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError(null);
+        setIsLoading(true);
+
+        try {
+            await login(email, password);
+            router.push(`/${locale}/dashboard`); // Assuming there's a dashboard
+        } catch (err: unknown) {
+            setError((err as Error).message || 'Login failed. Please check your credentials.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <div className={styles.loginPage}>
-            {/* Background Elements - Simple Architectural Grid */}
             <div className={styles.background} />
 
             <div className={`container ${styles.loginContainer}`}>
                 <div className={styles.loginCard}>
-                    {/* Logo - Classic & Serious */}
                     <Link href={`/${locale}`} className={styles.logo}>
                         <div className={styles.logoIcon}>
                             <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,89 +50,73 @@ export default function LoginContent({ locale }: { locale: string }) {
                         <span className={styles.logoText}>Nordic Bank</span>
                     </Link>
 
-                    {/* Coming Soon Banner - Informational & Grave */}
-                    <div className={styles.comingSoonBanner}>
-                        <div className={styles.comingSoonIcon}>
-                            <Info size={20} />
-                        </div>
-                        <div className={styles.comingSoonContent}>
-                            <h2 className={styles.comingSoonTitle}>{t('coming_soon.title')}</h2>
-                            <p className={styles.comingSoonMessage}>{t('coming_soon.message')}</p>
-                        </div>
-                    </div>
+                    <div className={styles.loginFormContainer}>
+                        <h3 className={styles.title}>{t('title')}</h3>
+                        <p className={styles.subtitle}>{t('subtitle')}</p>
 
-                    {/* Notify Form */}
-                    <div className={styles.notifyForm}>
-                        <div className={styles.inputWrapper}>
-                            <Mail size={18} className={styles.inputIcon} />
-                            <input
-                                type="email"
-                                placeholder={t('coming_soon.notify_placeholder')}
-                                className={styles.notifyInput}
-                            />
-                        </div>
-                        <button className={`btn btn-primary ${styles.notifyButton}`}>
-                            {t('coming_soon.notify_button')}
-                        </button>
-                    </div>
-
-                    {/* Divider */}
-                    <div className={styles.divider}>
-                        <span className={styles.dividerLine} />
-                        <span className={styles.dividerText}>Preview</span>
-                        <span className={styles.dividerLine} />
-                    </div>
-
-                    {/* Login Form Preview (Disabled) */}
-                    <div className={styles.loginFormPreview}>
-                        <h3 className={styles.previewTitle}>{t('title')}</h3>
-                        <p className={styles.previewSubtitle}>{t('subtitle')}</p>
+                        {error && (
+                            <div className={styles.errorBanner}>
+                                <AlertCircle size={18} />
+                                <span>{error}</span>
+                            </div>
+                        )}
 
                         <form className={styles.form} onSubmit={handleSubmit}>
                             <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>{t('email_label')}</label>
+                                <label className={styles.formLabel}>{t('form.email_or_username')}</label>
                                 <div className={styles.inputWrapper}>
                                     <Mail size={18} className={styles.inputIcon} />
                                     <input
-                                        type="email"
-                                        placeholder={t('email_placeholder')}
+                                        type="text"
+                                        placeholder={t('form.email_or_username')}
                                         className={styles.formInput}
-                                        disabled
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                        disabled={isLoading}
                                     />
                                 </div>
                             </div>
 
                             <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>{t('password_label')}</label>
+                                <label className={styles.formLabel}>{t('form.password')}</label>
                                 <div className={styles.inputWrapper}>
                                     <Lock size={18} className={styles.inputIcon} />
                                     <input
                                         type="password"
-                                        placeholder={t('password_placeholder')}
+                                        placeholder={t('form.password')}
                                         className={styles.formInput}
-                                        disabled
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                        disabled={isLoading}
                                     />
                                 </div>
                             </div>
 
                             <div className={styles.formOptions}>
                                 <label className={styles.checkbox}>
-                                    <input type="checkbox" disabled />
-                                    <span>{t('remember_me')}</span>
+                                    <input type="checkbox" disabled={isLoading} />
+                                    <span>Remember me</span>
                                 </label>
-                                <a href="#" className={styles.forgotLink}>{t('forgot_password')}</a>
+                                <a href="#" className={styles.forgotLink}>{t('links.forgot_password')}</a>
                             </div>
 
-                            <button type="submit" className={`btn btn-primary ${styles.submitButton}`} disabled>
-                                <ShieldCheck size={18} style={{ marginRight: '8px' }} />
-                                {t('submit')}
+                            <button
+                                type="submit"
+                                className={`btn btn-primary ${styles.submitButton}`}
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <Loader2 size={18} className="animate-spin" />
+                                ) : (
+                                    <ShieldCheck size={18} style={{ marginRight: '8px' }} />
+                                )}
+                                {isLoading ? 'Authenticating...' : t('form.submit')}
                             </button>
                         </form>
 
-                        <p className={styles.registerPrompt}>
-                            {t('no_account')}{' '}
-                            <a href="#" className={styles.registerLink}>{t('register')}</a>
-                        </p>
+
                     </div>
                 </div>
             </div>

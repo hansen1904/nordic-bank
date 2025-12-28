@@ -5,7 +5,18 @@
         "accounts": "Konti",
         "transactions": "Transaktioner",
         "support": "Support",
-        "reports": "Rapporter"
+        "reports": "Rapporter",
+        "logout": "Log ud"
+    },
+    "login": {
+        "title": "Medarbejder Login",
+        "subtitle": "Nordic Bank Portal",
+        "email_label": "Email",
+        "email_placeholder": "admin@nordicbank.com",
+        "password_label": "Adgangskode",
+        "password_placeholder": "Indtast adgangskode",
+        "submit": "Log ind",
+        "error": "Adgang nægtet. Tjek dine legitimationsoplysninger."
     },
     "dashboard": {
         "greeting": "God {timeOfDay}, {name}",
@@ -40,6 +51,7 @@
     },
     "customers": {
         "title": "Kunder",
+        "name": "Navn",
         "search": "Søg kunder",
         "details": "Kunde detaljer",
         "accountNumber": "Kontonummer",

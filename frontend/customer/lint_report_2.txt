@@ -1,0 +1,47 @@
+
+> customer@0.1.0 lint
+> eslint src --ext .ts,.tsx
+
+(node:7808) ESLintIgnoreWarning: The ".eslintignore" file is no longer supported. Switch to using the "ignores" property in "eslint.config.js": https://eslint.org/docs/latest/use/configure/migration-guide#ignoring-files
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\dashboard\accounts\[id]\page.tsx
+  30:11  warning  't' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  34:11  warning  'locale' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  64:27  error    Unexpected any. Specify a different type     @typescript-eslint/no-explicit-any
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\dashboard\accounts\page.tsx
+  44:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\dashboard\loans\page.tsx
+  5:21  warning  'TrendingDown' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\dashboard\page.tsx
+  46:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\login\LoginContent.test.tsx
+   1:26  warning  'fireEvent' is defined but never used              @typescript-eslint/no-unused-vars
+  14:12  error    Component definition is missing display name       react/display-name
+  14:33  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  27:44  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  59:15  warning  'submitButton' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Projects\nordic-bank\frontend\customer\src\app\[locale]\register\RegisterContent.test.tsx
+  14:12  error  Component definition is missing display name  react/display-name
+  14:33  error  Unexpected any. Specify a different type      @typescript-eslint/no-explicit-any
+  22:44  error  Unexpected any. Specify a different type      @typescript-eslint/no-explicit-any
+
+C:\Projects\nordic-bank\frontend\customer\src\components\dashboard\AccountCard.tsx
+  2:18  warning  'ArrowUpRight' is defined but never used    @typescript-eslint/no-unused-vars
+  2:32  warning  'ArrowDownRight' is defined but never used  @typescript-eslint/no-unused-vars
+  2:48  warning  'CreditCard' is defined but never used      @typescript-eslint/no-unused-vars
+
+C:\Projects\nordic-bank\frontend\customer\src\components\dashboard\TransactionHistory.tsx
+  53:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Projects\nordic-bank\frontend\customer\src\context\AuthContext.tsx
+  45:9  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+Ô£û 19 problems (10 errors, 9 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+
