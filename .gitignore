@@ -1,1 +1,35 @@
-.agent
+# IDEs and Editors
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Go
+bin/
+*.exe
+*.test
+vendor/
+go.work
+
+# Node.js / Frontend
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+.env*
+!.env.example
+
+# Next.js
+.next/
+out/
+build/
+dist/
+coverage/
+
+# Logs
+*.log
+!build.log
+
+# Agent
+.agent/

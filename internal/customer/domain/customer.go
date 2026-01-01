@@ -33,15 +33,16 @@ type Address struct {
 }
 
 type Customer struct {
-	ID          uuid.UUID      `gorm:"type:uuid;primaryKey;default:uuid_generate_v4()"`
-	UserID      uuid.UUID      `gorm:"type:uuid;uniqueIndex;not null"`
-	FirstName   string         `gorm:"not null;size:100"`
-	MiddleName  string         `gorm:"size:100"`
-	LastName    string         `gorm:"not null;size:100"`
-	DateOfBirth time.Time      `gorm:"not null"`
-	Phone       string         `gorm:"not null;size:20"`
-	Email       string         `gorm:"not null;size:255"`
-	Status      CustomerStatus `gorm:"type:customer.customer_status;default:'active'"`
+	ID                    uuid.UUID      `gorm:"type:uuid;primaryKey;default:uuid_generate_v4()"`
+	UserID                uuid.UUID      `gorm:"type:uuid;uniqueIndex;not null"`
+	RelationshipManagerID uuid.UUID      `gorm:"type:uuid;not null"`
+	FirstName             string         `gorm:"not null;size:100"`
+	MiddleName            string         `gorm:"size:100"`
+	LastName              string         `gorm:"not null;size:100"`
+	DateOfBirth           time.Time      `gorm:"not null"`
+	Phone                 string         `gorm:"not null;size:20"`
+	Email                 string         `gorm:"not null;size:255"`
+	Status                CustomerStatus `gorm:"type:customer.customer_status;default:'active'"`
 
 	// Address
 	AddressStreet     string `gorm:"size:255"`

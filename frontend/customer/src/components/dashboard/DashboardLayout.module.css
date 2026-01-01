@@ -1,65 +1,78 @@
+/* Three-Column Layout Container */
 .container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
     min-height: 100vh;
-    background: #f8fafc;
+    background: var(--bg-secondary);
 }
 
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-left: 0;
-    transition: margin-left 0.3s ease;
-}
-
-@media (min-width: 1024px) {
-    .main {
-        margin-left: 280px;
+/* Hide right sidebar on tablets */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 280px 1fr;
     }
 }
 
+/* Mobile: Single column */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Main Content Area */
+.main {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: var(--bg-secondary);
+}
+
+/* Mobile Menu Toggle */
 .menuToggle {
     position: fixed;
-    top: 1.5rem;
-    left: 1.5rem;
-    z-index: 50;
-    width: 48px;
-    height: 48px;
-    background: white;
-    border: 1px solid #e5e7eb;
+    top: 1rem;
+    left: 1rem;
+    width: 44px;
+    height: 44px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
+    color: var(--text-secondary);
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .menuToggle:hover {
-    background: #f9fafb;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 768px) {
     .menuToggle {
-        display: none;
+        display: flex;
     }
 }
 
 .content {
     flex: 1;
-    padding: 2rem;
-    max-width: 1400px;
-    width: 100%;
+    padding: 1.5rem;
+    max-width: 100%;
 }
 
 @media (max-width: 768px) {
     .content {
-        padding: 5rem 1rem 2rem;
+        padding: 1rem;
+        padding-top: 4rem;
+        /* Space for menu toggle */
     }
 }
 
+/* Loading State */
 .loadingContainer {
     display: flex;
     flex-direction: column;
@@ -67,11 +80,13 @@
     justify-content: center;
     min-height: 100vh;
     gap: 1rem;
-    color: #64748b;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
 }
 
 .spinner {
     animation: spin 1s linear infinite;
+    color: var(--text-accent);
 }
 
 @keyframes spin {

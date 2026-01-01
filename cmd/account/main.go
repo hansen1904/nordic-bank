@@ -32,6 +32,9 @@ func main() {
 		log.Fatalf("failed to create account schema: %v", err)
 	}
 
+	// Create UUID extension just in case
+	db.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"")
+
 	// Create Custom Types (safely)
 	enumQueries := []string{
 		`DO $$ BEGIN
@@ -53,7 +56,7 @@ func main() {
 	}
 
 	// Run Migrations for Account Service
-	if err := db.AutoMigrate(&domain.Account{}, &domain.LedgerEntry{}); err != nil {
+	if err := db.AutoMigrate(&domain.Account{}, &domain.LedgerEntry{}, &domain.AccountRequest{}); err != nil {
 		log.Fatalf("failed to migrate account database: %v", err)
 	}
 
@@ -68,8 +71,12 @@ func main() {
 	go func() {
 		router := gin.Default()
 
+		// Disable trailing slash redirect to prevent CORS issues
+		router.RedirectTrailingSlash = false
+
 		// Apply CORS middleware
 		router.Use(sharedauth.CORSMiddleware())
+		log.Println("CORS Middleware applied")
 
 		handler := accounthttp.NewHandler(service)
 		handler.RegisterRoutes(router)

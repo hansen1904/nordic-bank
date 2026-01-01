@@ -9,7 +9,7 @@
 .title {
     font-size: 2rem;
     font-weight: 700;
-    color: #0f172a;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
@@ -17,30 +17,32 @@
 }
 
 .subtitle {
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 1rem;
 }
 
 .formCard {
-    background: white;
+    background: var(--card-bg);
     border-radius: 16px;
     padding: 2.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--card-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .formCard h2 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
 }
 
 .success {
     padding: 1rem;
-    background: #d1fae5;
-    border: 1px solid #6ee7b7;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--color-success);
     border-radius: 8px;
-    color: #065f46;
+    color: var(--color-success);
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
@@ -59,25 +61,27 @@
 
 .field label {
     font-weight: 500;
-    color: #1e293b;
+    color: var(--text-primary);
     font-size: 0.9375rem;
 }
 
 .input,
 .textarea {
     padding: 0.875rem 1rem;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--input-border);
     border-radius: 8px;
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.2s;
+    background: var(--input-bg);
+    color: var(--text-primary);
 }
 
 .input:focus,
 .textarea:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .textarea {

@@ -66,7 +66,7 @@
     },
     "login": {
         "title": "Login",
-        "subtitle": "Adgang til din konto",
+        "title": "Login",
         "form": {
             "email": "E-mail",
             "email_or_username": "E-mail eller Brugernavn",
@@ -120,6 +120,7 @@
         "accounts": "Konti",
         "loans": "Lån",
         "support": "Support",
+        "settings": "Indstillinger",
         "logout": "Log ud"
     },
     "accounts": {
@@ -156,5 +157,30 @@
         "address_label": "Adresse",
         "phone_label": "Telefon",
         "email_label": "E-mail"
+    },
+    "settings": {
+        "title": "Indstillinger",
+        "subtitle": "Administrer dine præferencer og kontoindstillinger",
+        "appearance": "Udseende",
+        "darkMode": "Mørk tilstand",
+        "darkModeDesc": "Skift mellem lyst og mørkt tema",
+        "language": "Sprog",
+        "languageDesc": "Vælg dit foretrukne sprog",
+        "notifications": "Notifikationer",
+        "pushNotifications": "Push-notifikationer",
+        "pushNotificationsDesc": "Modtag notifikationer om kontoaktivitet",
+        "emailNotifications": "E-mail-notifikationer",
+        "emailNotificationsDesc": "Modtag e-mail-opdateringer og kontoudtog",
+        "security": "Sikkerhed",
+        "changePassword": "Skift adgangskode",
+        "changePasswordDesc": "Opdater din kontoadgangskode",
+        "change": "Skift",
+        "twoFactor": "To-faktor-godkendelse",
+        "twoFactorDesc": "Tilføj et ekstra sikkerhedslag til din konto",
+        "enable": "Aktiver",
+        "profile": "Profil",
+        "editProfile": "Rediger profil",
+        "editProfileDesc": "Opdater dine personlige oplysninger",
+        "edit": "Rediger"
     }
 }

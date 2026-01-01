@@ -15,7 +15,7 @@
 .welcome {
     font-size: 2rem;
     font-weight: 700;
-    color: #0f172a;
+    color: var(--text-primary);
 }
 
 .overview {
@@ -24,7 +24,7 @@
 
 .accountsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 24px;
 }
 
@@ -36,10 +36,26 @@
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     cursor: pointer;
+    position: relative;
 }
 
 .accountCard:hover {
     transform: translateY(-4px);
+}
+
+.starButton {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s;
+    opacity: 0.8;
+}
+
+.starButton:hover {
+    transform: scale(1.2);
+    opacity: 1;
 }
 
 .accountHeader {
@@ -76,14 +92,19 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
+.manageBtn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
 .noAccounts {
     grid-column: 1 / -1;
     text-align: center;
     padding: 40px;
-    background: #f8fafc;
-    border: 2px dashed #e2e8f0;
+    background: var(--card-bg);
+    border: 2px dashed var(--card-border);
     border-radius: 12px;
-    color: #64748b;
+    color: var(--text-secondary);
 }
 
 .activity {
@@ -96,5 +117,5 @@
     align-items: center;
     height: 50vh;
     font-size: 1.25rem;
-    color: #64748b;
+    color: var(--text-secondary);
 }

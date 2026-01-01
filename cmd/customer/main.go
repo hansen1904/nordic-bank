@@ -19,7 +19,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
+
+	authpb "nordic-bank/pkg/pb/auth/v1"
 )
 
 func main() {
@@ -31,6 +34,9 @@ func main() {
 	if err := db.Exec("CREATE SCHEMA IF NOT EXISTS customer").Error; err != nil {
 		log.Fatalf("failed to create customer schema: %v", err)
 	}
+
+	// Create UUID extension just in case
+	db.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"")
 
 	// Create Custom Types (safely)
 	enumQueries := []string{
@@ -57,9 +63,22 @@ func main() {
 		log.Fatalf("failed to migrate customer database: %v", err)
 	}
 
+	// Initialize Auth gRPC Client
+	authSvcAddr := os.Getenv("AUTH_SERVICE_ADDR")
+	if authSvcAddr == "" {
+		authSvcAddr = "auth-service-v2:9080"
+	}
+
+	authConn, err := grpc.Dial(authSvcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("did not connect to auth service: %v", err)
+	}
+	defer authConn.Close()
+	authClient := authpb.NewAuthServiceClient(authConn)
+
 	// Initialize Dependencies
 	repo := adapter.NewPostgresCustomerRepository(db)
-	service := application.NewCustomerService(repo)
+	service := application.NewCustomerService(repo, authClient)
 
 	// Error channel for servers
 	errChan := make(chan error, 2)

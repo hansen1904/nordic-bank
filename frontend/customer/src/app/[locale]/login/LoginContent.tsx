@@ -52,7 +52,6 @@ export default function LoginContent({ locale }: { locale: string }) {
 
                     <div className={styles.loginFormContainer}>
                         <h3 className={styles.title}>{t('title')}</h3>
-                        <p className={styles.subtitle}>{t('subtitle')}</p>
 
                         {error && (
                             <div className={styles.errorBanner}>

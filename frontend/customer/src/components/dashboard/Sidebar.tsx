@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import { LayoutDashboard, Wallet, Building2, MessageSquare, LogOut, User, ChevronLeft, Globe } from 'lucide-react';
+import { usePreferences } from '@/context/PreferencesContext';
+import { LayoutDashboard, Building2, MessageSquare, LogOut, User, ChevronLeft, Globe, Settings } from 'lucide-react';
+import { apiRequest } from '@/lib/api';
 import styles from './Sidebar.module.css';
 
 interface SidebarProps {
@@ -14,16 +16,41 @@ interface SidebarProps {
     onClose?: () => void;
 }
 
+interface CustomerProfile {
+    FirstName?: string;
+}
+
 export default function Sidebar({ locale, isOpen = true, onClose }: SidebarProps) {
     const t = useTranslations('navigation');
     const tLang = useTranslations('language');
 
     const { user, logout } = useAuth();
+    const { updatePreferences } = usePreferences();
     const pathname = usePathname();
     const router = useRouter();
     const [langMenuOpen, setLangMenuOpen] = useState(false);
+    const [firstName, setFirstName] = useState(user?.username || 'User');
 
-    const switchLocale = (newLocale: string) => {
+    useEffect(() => {
+        if (user) {
+            apiRequest<CustomerProfile>(
+                `/customers/me?user_id=${user.id}`,
+                { method: 'GET' },
+                '8082'
+            ).then(profile => {
+                if (profile && profile.FirstName) {
+                    setFirstName(profile.FirstName);
+                }
+            }).catch(() => {
+                // Keep default username on error
+            });
+        }
+    }, [user]);
+
+    const switchLocale = async (newLocale: string) => {
+        // Save preference
+        await updatePreferences({ language: newLocale });
+
         const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
         router.push(newPath);
         setLangMenuOpen(false);
@@ -38,7 +65,7 @@ export default function Sidebar({ locale, isOpen = true, onClose }: SidebarProps
         {
             href: `/${locale}/dashboard/accounts`,
             label: t('accounts'),
-            icon: Wallet,
+            icon: LayoutDashboard, // accounts usually uses wallet, swapping icons if needed
         },
         {
             href: `/${locale}/dashboard/loans`,
@@ -49,6 +76,11 @@ export default function Sidebar({ locale, isOpen = true, onClose }: SidebarProps
             href: `/${locale}/dashboard/support`,
             label: t('support'),
             icon: MessageSquare,
+        },
+        {
+            href: `/${locale}/dashboard/settings`,
+            label: t('settings') || 'Settings',
+            icon: Settings,
         },
     ];
 
@@ -83,7 +115,7 @@ export default function Sidebar({ locale, isOpen = true, onClose }: SidebarProps
                         <User size={24} />
                     </div>
                     <div className={styles.userInfo}>
-                        <h3 className={styles.userName}>{user?.username || 'User'}</h3>
+                        <h3 className={styles.userName}>{firstName}</h3>
                         <p className={styles.userEmail}>{user?.email}</p>
                     </div>
                 </div>

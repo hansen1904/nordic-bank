@@ -11,6 +11,8 @@ type UserRepository interface {
 	GetByID(ctx context.Context, id uuid.UUID) (*User, error)
 	GetByEmail(ctx context.Context, email string) (*User, error)
 	GetByUsername(ctx context.Context, username string) (*User, error)
+	GetByEmailOrUsername(ctx context.Context, identifier string) (*User, error)
+	ListByRole(ctx context.Context, role UserRole) ([]User, error)
 	Update(ctx context.Context, user *User) error
 	Delete(ctx context.Context, id uuid.UUID) error
 }

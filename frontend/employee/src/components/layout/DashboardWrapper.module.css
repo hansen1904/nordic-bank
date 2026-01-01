@@ -1,0 +1,202 @@
+/* Three-Column Layout */
+.dashboardLayout {
+    display: grid;
+    grid-template-columns: 240px 1fr 320px;
+    min-height: 100vh;
+    background: #f3f4f6;
+}
+
+/* Hide right sidebar on tablets */
+@media (max-width: 1200px) {
+    .dashboardLayout {
+        grid-template-columns: 240px 1fr;
+    }
+}
+
+/* Mobile: Single column */
+@media (max-width: 768px) {
+    .dashboardLayout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Main Content Area */
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: #f8fafc;
+}
+
+/* Top Header */
+.topHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Search Bar */
+.searchBar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    background: #f3f4f6;
+    border-radius: 10px;
+    max-width: 400px;
+}
+
+.searchIcon {
+    color: #9ca3af;
+}
+
+.searchInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    color: #0f172a;
+    outline: none;
+    font-family: inherit;
+}
+
+.searchInput::placeholder {
+    color: #9ca3af;
+}
+
+/* Header Actions */
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.iconButton {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.iconButton:hover {
+    background: #f3f4f6;
+    color: #0f172a;
+}
+
+.badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 16px;
+    height: 16px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 600;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileBtn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profileBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+}
+
+/* Mobile Menu Toggle */
+.menuToggle {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.menuToggle:hover {
+    background: #f3f4f6;
+}
+
+@media (max-width: 768px) {
+    .menuToggle {
+        display: flex;
+    }
+
+    .searchBar {
+        max-width: none;
+    }
+}
+
+.content {
+    flex: 1;
+    padding: 1.5rem;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 1rem;
+    }
+}
+
+/* Loading State */
+.loadingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #f8fafc;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #0f172a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

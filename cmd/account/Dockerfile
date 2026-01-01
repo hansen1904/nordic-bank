@@ -11,7 +11,7 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN go build -o account-service-v2 ./cmd/account-v2
+RUN go build -o account-service ./cmd/account
 
 # Final stage
 FROM alpine:latest
@@ -19,10 +19,10 @@ FROM alpine:latest
 WORKDIR /app
 
 # Copy binary from builder
-COPY --from=builder /app/account-service-v2 .
+COPY --from=builder /app/account-service .
 
 # Expose ports
 EXPOSE 8080 9080
 
 # Run
-CMD ["./account-service-v2"]
+CMD ["./account-service"]

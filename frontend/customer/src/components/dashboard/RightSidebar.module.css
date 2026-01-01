@@ -1,0 +1,217 @@
+.sidebar {
+    background: var(--sidebar-bg);
+    padding: 1.5rem;
+    border-left: 1px solid var(--card-border);
+    overflow-y: auto;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Profile Section */
+.profileSection {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.avatar {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatarText {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+}
+
+.statusDot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 14px;
+    height: 14px;
+    background: #22c55e;
+    border: 3px solid var(--sidebar-bg);
+    border-radius: 50%;
+}
+
+.greeting {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    color: var(--text-primary);
+}
+
+.tagline {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Quick Stats Grid */
+.quickStatsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.quickStatCard {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--card-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.quickStatIcon {
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+}
+
+.quickStatValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.quickStatLabel {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Section Title */
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem 0;
+}
+
+/* Upcoming Payments */
+.upcomingSection {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--card-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.upcomingItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.upcomingItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.upcomingInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.upcomingName {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.upcomingDate {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.upcomingAmount {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-error);
+}
+
+.upcomingAmountPositive {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-success);
+}
+
+/* Notifications */
+.notificationsSection {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--card-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.notificationItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.notificationDot {
+    width: 8px;
+    height: 8px;
+    background: #6366f1;
+    border-radius: 50%;
+    margin-top: 0.375rem;
+    flex-shrink: 0;
+}
+
+.notificationItem p {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Contact Section */
+.contactSection {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.contactItem svg {
+    color: #6366f1;
+    flex-shrink: 0;
+}
+
+/* Hide on tablet and below */
+@media (max-width: 1200px) {
+    .sidebar {
+        display: none;
+    }
+}

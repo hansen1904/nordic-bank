@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import Header from '@/components/layout/Header';
+import HeroBanner from '@/components/dashboard/HeroBanner';
 import MetricCard from '@/components/dashboard/MetricCard';
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import CustomerSearchBar from '@/components/customer/CustomerSearchBar';
@@ -8,13 +8,19 @@ import { mockDashboardMetrics, mockActivities, mockTopCustomers } from '@/lib/mo
 import { formatCurrency } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import AccountRequestsWidget from '@/components/dashboard/AccountRequestsWidget';
 
 export default function DashboardPage() {
     const t = useTranslations();
 
     return (
         <>
-            <Header employeeName="Michael" />
+            {/* Hero Banner */}
+            <HeroBanner
+                title="Welcome to Your Workspace"
+                subtitle="Manage customers, accounts, and transactions efficiently"
+                ctaText="View Tasks"
+            />
 
             {/* Metrics Grid */}
             <div className="grid grid-4 mb-6">
@@ -38,26 +44,16 @@ export default function DashboardPage() {
 
             {/* Main Content Grid */}
             <div className="grid grid-2 mb-6">
+                {/* Account Requests - Prominent placement */}
+                <div style={{ height: '100%' }}>
+                    <AccountRequestsWidget />
+                </div>
+
                 {/* Customer Search */}
                 <DashboardCard title={t('dashboard.customerSearch.title')}>
                     <CustomerSearchBar />
                     <div className="mt-4 text-sm text-muted">
                         {t('dashboard.customerSearch.placeholder')}
-                    </div>
-                </DashboardCard>
-
-                {/* Quick Actions */}
-                <DashboardCard title={t('dashboard.quickActions.title')}>
-                    <div className="grid grid-1" style={{ gap: 'var(--spacing-3)' }}>
-                        <Link href="/customers/onboard" className="btn btn-primary" style={{ justifyContent: 'flex-start' }}>
-                            {t('dashboard.quickActions.newCustomer')}
-                        </Link>
-                        <button className="btn btn-secondary" style={{ justifyContent: 'flex-start' }}>
-                            {t('dashboard.quickActions.newAccount')}
-                        </button>
-                        <button className="btn btn-secondary" style={{ justifyContent: 'flex-start' }}>
-                            {t('dashboard.quickActions.viewReports')}
-                        </button>
                     </div>
                 </DashboardCard>
             </div>

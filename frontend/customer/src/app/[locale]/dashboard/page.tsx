@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { apiRequest } from '@/lib/api';
 import TransactionHistory from '@/components/dashboard/TransactionHistory';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { Wallet, Plus, ArrowRight } from 'lucide-react';
+import HeroBanner from '@/components/dashboard/HeroBanner';
+import { Wallet, ArrowRight } from 'lucide-react';
 import styles from './page.module.css';
 
 interface Account {
@@ -16,10 +17,11 @@ interface Account {
     AccountName: string;
     Balance: number;
     Currency: string;
+    IsFavorite: boolean;
 }
 
 export default function DashboardPage() {
-    const t = useTranslations('dashboard');
+
     const { user, isLoading: authLoading } = useAuth();
     const router = useRouter();
 
@@ -38,11 +40,16 @@ export default function DashboardPage() {
             try {
                 setError(null);
                 const response = await apiRequest<Account[]>(
-                    `/accounts/?customer_id=${user.id}`,
+                    `/accounts?customer_id=${user.id}`,
                     { method: 'GET' },
                     '8083'
                 );
-                setAccounts(response || []);
+                // Backend might return null IsFavorite if false/empty, ensure boolean
+                const sanitizedAccounts = (response || []).map(acc => ({
+                    ...acc,
+                    IsFavorite: !!acc.IsFavorite
+                }));
+                setAccounts(sanitizedAccounts);
             } catch (err: unknown) {
                 console.error('Failed to fetch accounts', err);
                 const errorMsg = (err as Error).message || 'Unable to load accounts';
@@ -63,6 +70,8 @@ export default function DashboardPage() {
         }
     }, [user, authLoading, router]);
 
+
+
     if (authLoading || isLoading) return <div className={styles.loading}>Loading dashboard...</div>;
 
     const formatAmount = (amount: number, currency: string) => {
@@ -72,16 +81,22 @@ export default function DashboardPage() {
         }).format(amount / 100);
     };
 
+    // Filter accounts: show favorites if any, otherwise showing first 4
+    const favoriteAccounts = accounts.filter(acc => acc.IsFavorite);
+    const displayedAccounts = favoriteAccounts.length > 0
+        ? favoriteAccounts.slice(0, 4)
+        : accounts.slice(0, 4);
+
     return (
         <DashboardLayout>
             <div className={styles.dashboardContainer}>
-                <header className={styles.header}>
-                    <h1 className={styles.welcome}>{t('welcome')}, {user?.username}</h1>
-                    <button className={`btn btn-primary ${styles.cta}`}>
-                        <Plus size={18} style={{ marginRight: '8px' }} />
-                        New Transfer
-                    </button>
-                </header>
+                {/* Hero Banner */}
+                <HeroBanner
+                    title="Welcome Back to Nordic Bank"
+                    subtitle="Your trusted financial partner for all your banking needs"
+                    ctaText="Explore New Features"
+                    ctaAction={() => console.log('CTA clicked')}
+                />
 
                 {error && (
                     <div style={{
@@ -98,8 +113,16 @@ export default function DashboardPage() {
 
                 <section className={styles.overview}>
                     <div className={styles.accountsGrid}>
-                        {accounts.map(acc => (
-                            <div key={acc.ID} className={styles.accountCard}>
+                        {displayedAccounts.map(acc => (
+                            <div
+                                key={acc.ID}
+                                className={styles.accountCard}
+                                onClick={() => router.push(`/dashboard/accounts/${acc.ID}`)}
+                                role="button"
+                                tabIndex={0}
+                            >
+
+
                                 <div className={styles.accountHeader}>
                                     <Wallet size={24} className={styles.accountIcon} />
                                     <span className={styles.accountType}>{acc.AccountName}</span>
