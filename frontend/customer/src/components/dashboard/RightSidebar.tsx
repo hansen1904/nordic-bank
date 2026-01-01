@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { TrendingUp, CreditCard, Calendar, Bell, Phone, MapPin, User } from 'lucide-react';
+import { TrendingUp, CreditCard, Calendar, Bell, Phone, MapPin } from 'lucide-react';
 import { apiRequest } from '@/lib/api';
 import StatisticsCard from './StatisticsCard';
 import ManagerCard, { ManagerProfile } from './ManagerCard';
@@ -13,6 +13,27 @@ interface RightSidebarProps {
         username: string;
         email: string;
     } | null;
+}
+
+interface CustomerProfile {
+    RelationshipManagerID?: string;
+}
+
+interface UserResponse {
+    id: string;
+    username: string;
+    role: string;
+    email: string;
+    status: string;
+    _customerFirstName?: string;
+}
+
+interface AccountResponse {
+    ID: string;
+}
+
+interface TransactionListResponse {
+    total: number;
 }
 
 export default function RightSidebar({ user }: RightSidebarProps) {
@@ -32,7 +53,7 @@ export default function RightSidebar({ user }: RightSidebarProps) {
                 // 1. Fetch Customer Profile to get Relationship Manager ID
                 // User ID from auth context is the Auth User ID. We need to find the Customer profile for this User ID.
                 // NOTE: '8082' is customer-service port. Correct endpoint for lookup by UserID is /me
-                const customerProfile = await apiRequest<any>(
+                const customerProfile = await apiRequest<CustomerProfile>(
                     `/customers/me?user_id=${user.id}`,
                     { method: 'GET' },
                     '8082'
@@ -49,7 +70,7 @@ export default function RightSidebar({ user }: RightSidebarProps) {
 
                 if (isValidManagerID) {
                     try {
-                        const managerUser = await apiRequest<any>(
+                        const managerUser = await apiRequest<UserResponse>(
                             `/users/${customerProfile.RelationshipManagerID}`,
                             { method: 'GET' },
                             '8081'
@@ -75,7 +96,7 @@ export default function RightSidebar({ user }: RightSidebarProps) {
                         console.error('Failed to fetch manager details:', e);
                         // Fallback if we can't fetch specific manager details
                         setManager({
-                            id: customerProfile.RelationshipManagerID,
+                            id: customerProfile?.RelationshipManagerID || '',
                             name: 'Assigned Manager',
                             title: 'Relationship Manager',
                             email: 'support@nordicbank.com',
@@ -87,7 +108,7 @@ export default function RightSidebar({ user }: RightSidebarProps) {
 
                 // 3. Fetch Accounts
                 // NOTE: '8083' is account-service port
-                const accounts = await apiRequest<any[]>(
+                const accounts = await apiRequest<AccountResponse[]>(
                     `/accounts?customer_id=${user.id}`,
                     { method: 'GET' },
                     '8083'
@@ -100,7 +121,7 @@ export default function RightSidebar({ user }: RightSidebarProps) {
                 if (accounts && accounts.length > 0) {
                     // NOTE: '8084' is transaction-service port
                     const txPromises = accounts.map(acc =>
-                        apiRequest<any>(
+                        apiRequest<TransactionListResponse>(
                             `/transactions/account/${acc.ID}?page=1&limit=1`,
                             { method: 'GET' },
                             '8084'
@@ -136,6 +157,16 @@ export default function RightSidebar({ user }: RightSidebarProps) {
     const greeting = getGreeting();
     const balanceData = [20, 35, 30, 45, 40, 55, 60]; // Last 7 days mock data
 
+    // Logic to determine display name
+    // If manager contains _customerFirstName (which we don't have in type, but logic was checking for it), using it.
+    // However, manager object we build doesn't store _customerFirstName.
+    // The previous logic ((manager as any)?._customerFirstName) implies managerUser might have it, but we map managerUser to manager.
+    // Simplification: just use user.username. The "manager" object is about the relationship manager, not the current user.
+    // Wait, line 150 original logic: `((manager as any)?._customerFirstName || user.username)`.
+    // It seems to try to get Customer First Name from "manager" object? That's weird. "manager" is the relationship manager.
+    // Likely a copy-paste error or misunderstanding in original code.
+    // I will strict it to user.username for now to be safe and type-safe.
+
     return (
         <aside className={styles.sidebar}>
             {/* Profile Summary */}
@@ -147,7 +178,7 @@ export default function RightSidebar({ user }: RightSidebarProps) {
                     <div className={styles.statusDot}></div>
                 </div>
                 <h3 className={styles.greeting}>
-                    {greeting}, {manager?.name === 'Assigned Manager' || !manager ? (user.username) : ((manager as any)?._customerFirstName || user.username)}! 👋
+                    {greeting}, {user.username}! 👋
                 </h3>
                 <p className={styles.tagline}>
                     Welcome back to Nordic Bank

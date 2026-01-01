@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+
 import { useTranslations } from 'next-intl';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
@@ -16,7 +16,7 @@ export default function SettingsPage() {
     const locale = params.locale as string;
     const {
         theme,
-        language,
+
         notificationsEnabled,
         emailNotifications,
         updatePreferences

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { useAuth } from './AuthContext';
 import { apiRequest } from '@/lib/api';
 
@@ -25,19 +25,19 @@ interface PreferencesContextType {
 const PreferencesContext = createContext<PreferencesContextType | undefined>(undefined);
 
 export function PreferencesProvider({ children }: { children: ReactNode }) {
-    const { token, user } = useAuth();
+    const { token } = useAuth();
     const [preferences, setPreferences] = useState<UserPreferences>({
         theme: 'light',
         language: 'en',
         notifications_enabled: true,
         email_notifications: true
     });
-    const [mounted, setMounted] = useState(false);
+
     const [isLoading, setIsLoading] = useState(true);
 
     // Initial load from localStorage (to avoid flash)
     useEffect(() => {
-        setMounted(true);
+
         const stored = localStorage.getItem('nordic-bank-preferences');
         if (stored) {
             try {
@@ -57,16 +57,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
         }
     }, []);
 
-    // Fetch from backend when token is available
-    useEffect(() => {
-        if (token) {
-            fetchPreferences();
-        } else {
-            setIsLoading(false);
-        }
-    }, [token]);
-
-    const fetchPreferences = async () => {
+    const fetchPreferences = useCallback(async () => {
         try {
             const data = await apiRequest<UserPreferences>('/auth/preferences', {
                 headers: { 'Authorization': `Bearer ${token}` }
@@ -82,7 +73,16 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [token]);
+
+    // Fetch from backend when token is available
+    useEffect(() => {
+        if (token) {
+            fetchPreferences();
+        } else {
+            setIsLoading(false);
+        }
+    }, [token, fetchPreferences]);
 
     const updatePreferences = async (newPrefs: Partial<UserPreferences>) => {
         const updated = { ...preferences, ...newPrefs };

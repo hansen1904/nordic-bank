@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+
 import { useAuth } from '@/context/AuthContext';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { apiRequest } from '@/lib/api';
@@ -17,7 +17,7 @@ interface CreateRequestPayload {
 }
 
 export default function RequestAccountPage() {
-    const t = useTranslations('accounts');
+
     const { user } = useAuth();
     const router = useRouter();
     const params = useParams();

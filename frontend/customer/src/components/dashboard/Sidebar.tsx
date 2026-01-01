@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { usePreferences } from '@/context/PreferencesContext';
-import { LayoutDashboard, Wallet, Building2, MessageSquare, LogOut, User, ChevronLeft, Globe, Settings, ArrowRightLeft } from 'lucide-react';
+import { LayoutDashboard, Building2, MessageSquare, LogOut, User, ChevronLeft, Globe, Settings } from 'lucide-react';
 import { apiRequest } from '@/lib/api';
 import styles from './Sidebar.module.css';
 
@@ -14,6 +14,10 @@ interface SidebarProps {
     locale: string;
     isOpen?: boolean;
     onClose?: () => void;
+}
+
+interface CustomerProfile {
+    FirstName?: string;
 }
 
 export default function Sidebar({ locale, isOpen = true, onClose }: SidebarProps) {
@@ -29,7 +33,7 @@ export default function Sidebar({ locale, isOpen = true, onClose }: SidebarProps
 
     useEffect(() => {
         if (user) {
-            apiRequest<any>(
+            apiRequest<CustomerProfile>(
                 `/customers/me?user_id=${user.id}`,
                 { method: 'GET' },
                 '8082'

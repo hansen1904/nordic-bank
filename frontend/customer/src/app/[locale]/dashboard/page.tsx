@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { apiRequest } from '@/lib/api';
 import TransactionHistory from '@/components/dashboard/TransactionHistory';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import HeroBanner from '@/components/dashboard/HeroBanner';
-import { Wallet, Plus, ArrowRight } from 'lucide-react';
+import { Wallet, ArrowRight } from 'lucide-react';
 import styles from './page.module.css';
 
 interface Account {
@@ -21,7 +21,7 @@ interface Account {
 }
 
 export default function DashboardPage() {
-    const t = useTranslations('dashboard');
+
     const { user, isLoading: authLoading } = useAuth();
     const router = useRouter();
 

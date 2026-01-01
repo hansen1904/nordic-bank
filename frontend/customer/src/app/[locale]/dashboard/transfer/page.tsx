@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useTranslations } from 'next-intl';
+
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { ArrowRightLeft } from 'lucide-react';
 import styles from '../page.module.css';

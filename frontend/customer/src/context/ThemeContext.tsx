@@ -18,6 +18,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Load theme from localStorage on mount
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
         const savedTheme = localStorage.getItem('nordic-bank-theme') as Theme;
         if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {

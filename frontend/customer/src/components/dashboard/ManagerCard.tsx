@@ -3,16 +3,7 @@
 import { Phone, Mail, MessageCircle } from 'lucide-react';
 import styles from './ManagerCard.module.css';
 
-interface Manager {
-    id: string;
-    name: string;
-    title: string;
-    email: string;
-    phone: string;
-    photo?: string;
-    lastContact?: string;
-    status?: 'available' | 'busy' | 'offline';
-}
+
 
 export interface ManagerProfile {
     id: string;
