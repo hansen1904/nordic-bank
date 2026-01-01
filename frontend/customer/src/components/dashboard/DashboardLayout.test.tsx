@@ -15,6 +15,19 @@ jest.mock('@/context/AuthContext', () => ({
     useAuth: jest.fn(),
 }));
 
+// Mock PreferencesContext
+jest.mock('@/context/PreferencesContext', () => ({
+    usePreferences: jest.fn(() => ({
+        theme: 'light',
+        language: 'en',
+        notificationsEnabled: true,
+        emailNotifications: true,
+        updatePreferences: jest.fn(),
+        isLoading: false
+    })),
+    PreferencesProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>
+}));
+
 // Mock next-intl
 jest.mock('next-intl', () => ({
     useTranslations: () => (key: string) => key,
