@@ -8,6 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"nordic-bank/internal/auth/application"
 	"nordic-bank/internal/auth/domain"
 
 	"github.com/gin-gonic/gin"
@@ -39,6 +40,27 @@ func (m *MockAuthService) Login(ctx context.Context, email, password, ipAddress,
 
 func (m *MockAuthService) SeedDefaultEmployee(ctx context.Context, username, email, password string) error {
 	args := m.Called(ctx, username, email, password)
+	return args.Error(0)
+}
+
+func (m *MockAuthService) GetPreferences(ctx context.Context, userID string) (*application.UserPreferences, error) {
+	args := m.Called(ctx, userID)
+	if prefs := args.Get(0); prefs != nil {
+		return prefs.(*application.UserPreferences), args.Error(1)
+	}
+	return nil, args.Error(1)
+}
+
+func (m *MockAuthService) GetUserByID(ctx context.Context, userID string) (*domain.User, error) {
+	args := m.Called(ctx, userID)
+	if user := args.Get(0); user != nil {
+		return user.(*domain.User), args.Error(1)
+	}
+	return nil, args.Error(1)
+}
+
+func (m *MockAuthService) UpdatePreferences(ctx context.Context, userID string, prefs *application.UserPreferences) error {
+	args := m.Called(ctx, userID, prefs)
 	return args.Error(0)
 }
 

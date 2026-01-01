@@ -21,6 +21,21 @@
     transform: scaleX(1);
 }
 
+.starButton {
+    position: absolute;
+    top: 1.75rem;
+    right: 1.75rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s;
+    opacity: 0.8;
+}
+
+.starButton:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
 .accent {
     position: absolute;
     bottom: 0;

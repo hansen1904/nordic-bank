@@ -147,8 +147,6 @@ export default function OnboardCustomerContent() {
 
     return (
         <>
-            <Header employeeName="Admin" />
-
             <div className={styles.onboardContainer}>
                 <div className={styles.onboardCard}>
                     {success ? (

@@ -79,7 +79,7 @@ services:
     container_name: account-service
     build:
       context: .
-      dockerfile: ./cmd/account-v2/Dockerfile
+      dockerfile: ./cmd/account/Dockerfile
     ports:
       - "8083:8080"
       - "9083:9083"

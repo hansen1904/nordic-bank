@@ -23,6 +23,8 @@ func (h *Handler) RegisterRoutes(router *gin.Engine) {
 		tx.POST("/transfer", h.createTransfer)
 		tx.GET("/:id", h.getTransaction)
 		tx.GET("/account/:accountId", h.listTransactions)
+		// Support query parameter version for frontend compatibility
+		tx.GET("", h.listTransactionsByQuery)
 	}
 }
 
@@ -82,6 +84,33 @@ func (h *Handler) getTransaction(c *gin.Context) {
 
 func (h *Handler) listTransactions(c *gin.Context) {
 	accIDStr := c.Param("accountId")
+	accID, err := uuid.Parse(accIDStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid account id"})
+		return
+	}
+
+	// Simple pagination for now
+	txs, total, err := h.service.ListTransactions(c.Request.Context(), accID, 1, 50)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"transactions": txs,
+		"total":        total,
+	})
+}
+
+// listTransactionsByQuery handles GET /transactions?account_id=xxx
+func (h *Handler) listTransactionsByQuery(c *gin.Context) {
+	accIDStr := c.Query("account_id")
+	if accIDStr == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "account_id query parameter is required"})
+		return
+	}
+
 	accID, err := uuid.Parse(accIDStr)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid account id"})

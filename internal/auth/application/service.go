@@ -8,6 +8,7 @@ import (
 	"nordic-bank/internal/auth/domain"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -81,15 +82,16 @@ func (s *AuthService) SeedDefaultEmployee(ctx context.Context, username, email, 
 }
 
 // Login authenticates a user and returns user and tokens
-func (s *AuthService) Login(ctx context.Context, email, password, ipAddress, userAgent string) (*domain.User, string, string, error) {
-	user, err := s.userRepo.GetByEmail(ctx, email)
+func (s *AuthService) Login(ctx context.Context, identifier, password, ipAddress, userAgent string) (*domain.User, string, string, error) {
+	user, err := s.userRepo.GetByEmailOrUsername(ctx, identifier)
 	if err != nil {
-		return nil, "", "", errors.New("invalid credentials")
+		// Generic error message as requested
+		return nil, "", "", errors.New("Your username or password is incorrect, please try again")
 	}
 
 	if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
 		// Update failed attempts (logic omitted for brevity)
-		return nil, "", "", errors.New("invalid credentials")
+		return nil, "", "", errors.New("Your username or password is incorrect, please try again")
 	}
 
 	if user.Status != domain.StatusActive {
@@ -172,4 +174,77 @@ type CustomClaims struct {
 	Role       domain.UserRole `json:"role"`
 	CustomerID string          `json:"customer_id,omitempty"`
 	jwt.RegisteredClaims
+}
+
+// UserPreferences represents user preference settings
+type UserPreferences struct {
+	Theme                string `json:"theme"`
+	Language             string `json:"language"`
+	NotificationsEnabled bool   `json:"notifications_enabled"`
+	EmailNotifications   bool   `json:"email_notifications"`
+}
+
+// GetPreferences retrieves user preferences by user ID
+func (s *AuthService) GetPreferences(ctx context.Context, userID string) (*UserPreferences, error) {
+	id, err := uuid.Parse(userID)
+	if err != nil {
+		return nil, errors.New("invalid user id")
+	}
+
+	user, err := s.userRepo.GetByID(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+
+	return &UserPreferences{
+		Theme:                user.PreferredTheme,
+		Language:             user.PreferredLanguage,
+		NotificationsEnabled: user.NotificationsEnabled,
+		EmailNotifications:   user.EmailNotifications,
+	}, nil
+}
+
+// GetUserByID retrieves a user by their ID
+func (s *AuthService) GetUserByID(ctx context.Context, userID string) (*domain.User, error) {
+	id, err := uuid.Parse(userID)
+	if err != nil {
+		return nil, errors.New("invalid user id")
+	}
+
+	user, err := s.userRepo.GetByID(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
+// ListUsers retrieves users optionally filtered by role
+func (s *AuthService) ListUsers(ctx context.Context, role *domain.UserRole) ([]domain.User, error) {
+	if role != nil {
+		return s.userRepo.ListByRole(ctx, *role)
+	}
+	// If no role specified, we could list all, but for now let's just return empty or implement ListAll if needed
+	// For this specific requirement, we only need filtering by role
+	return nil, errors.New("role filter is required")
+}
+
+// UpdatePreferences updates user preferences
+func (s *AuthService) UpdatePreferences(ctx context.Context, userID string, prefs *UserPreferences) error {
+	id, err := uuid.Parse(userID)
+	if err != nil {
+		return errors.New("invalid user id")
+	}
+
+	user, err := s.userRepo.GetByID(ctx, id)
+	if err != nil {
+		return err
+	}
+
+	user.PreferredTheme = prefs.Theme
+	user.PreferredLanguage = prefs.Language
+	user.NotificationsEnabled = prefs.NotificationsEnabled
+	user.EmailNotifications = prefs.EmailNotifications
+
+	return s.userRepo.Update(ctx, user)
 }

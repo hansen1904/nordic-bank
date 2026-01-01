@@ -38,6 +38,8 @@ type Account struct {
 
 	Status AccountStatus `gorm:"type:account.account_status;default:'active'"`
 
+	IsFavorite bool `gorm:"default:false"`
+
 	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP"`
 	UpdatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP"`
 	OpenedAt  time.Time `gorm:"default:CURRENT_DATE"`

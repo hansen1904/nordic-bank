@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/context/AuthContext';
@@ -8,6 +8,7 @@ import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import AccountCard from '@/components/dashboard/AccountCard';
 import { apiRequest } from '@/lib/api';
 import { Wallet, Plus, Loader2 } from 'lucide-react';
+import Link from 'next/link';
 import styles from './page.module.css';
 
 interface Account {
@@ -17,6 +18,7 @@ interface Account {
     Balance: number;
     Currency: string;
     Status: string;
+    IsFavorite: boolean;
 }
 
 export default function AccountsPage() {
@@ -36,11 +38,16 @@ export default function AccountsPage() {
             try {
                 setError(null);
                 const response = await apiRequest<Account[]>(
-                    `/accounts/?customer_id=${user.id}`,
+                    `/accounts?customer_id=${user.id}`,
                     { method: 'GET' },
                     '8083'
                 );
-                setAccounts(response || []);
+                // Backend might return null IsFavorite if false/empty, ensure boolean
+                const sanitizedAccounts = (response || []).map(acc => ({
+                    ...acc,
+                    IsFavorite: !!acc.IsFavorite
+                }));
+                setAccounts(sanitizedAccounts);
             } catch (err: unknown) {
                 console.error('Failed to fetch accounts', err);
                 setError('Failed to load accounts');
@@ -51,6 +58,30 @@ export default function AccountsPage() {
 
         fetchAccounts();
     }, [user]);
+
+    const toggleFavorite = async (e: React.MouseEvent<HTMLDivElement, MouseEvent>, accountId: string) => {
+        e.preventDefault(); // Prevent Link navigation
+        e.stopPropagation();
+
+        // Optimistic update
+        setAccounts(prev => prev.map(acc =>
+            acc.ID === accountId ? { ...acc, IsFavorite: !acc.IsFavorite } : acc
+        ));
+
+        try {
+            await apiRequest(
+                `/accounts/${accountId}/favorite`,
+                { method: 'PUT' },
+                '8083'
+            );
+        } catch (error) {
+            console.error('Failed to toggle favorite', error);
+            // Revert on error
+            setAccounts(prev => prev.map(acc =>
+                acc.ID === accountId ? { ...acc, IsFavorite: !acc.IsFavorite } : acc
+            ));
+        }
+    };
 
     if (isLoading) {
         return (
@@ -76,10 +107,10 @@ export default function AccountsPage() {
                         </h1>
                         <p className={styles.subtitle}>Manage your accounts and view transaction history</p>
                     </div>
-                    <button className={`btn btn-primary ${styles.addBtn}`}>
+                    <Link href={`/${locale}/dashboard/accounts/new`} className={`btn btn-primary ${styles.addBtn}`}>
                         <Plus size={20} />
                         Open New Account
-                    </button>
+                    </Link>
                 </header>
 
                 {error && (
@@ -99,6 +130,8 @@ export default function AccountsPage() {
                                 balance={account.Balance}
                                 currency={account.Currency}
                                 locale={locale}
+                                isFavorite={account.IsFavorite}
+                                onToggleFavorite={(e) => toggleFavorite(e, account.ID)}
                             />
                         ))}
                     </div>
@@ -107,10 +140,10 @@ export default function AccountsPage() {
                         <Wallet size={64} style={{ opacity: 0.3 }} />
                         <h3>{t('noAccounts')}</h3>
                         <p>Open your first account to start banking with us.</p>
-                        <button className={`btn btn-primary ${styles.emptyBtn}`}>
+                        <Link href={`/${locale}/dashboard/accounts/new`} className={`btn btn-primary ${styles.emptyBtn}`}>
                             <Plus size={20} />
                             Open New Account
-                        </button>
+                        </Link>
                     </div>
                 )}
             </div>

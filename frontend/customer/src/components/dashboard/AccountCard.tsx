@@ -1,5 +1,6 @@
+import React from 'react';
 import Link from 'next/link';
-import { Wallet, ArrowRight } from 'lucide-react';
+import { Wallet, ArrowRight, Star } from 'lucide-react';
 import styles from './AccountCard.module.css';
 
 interface AccountCardProps {
@@ -9,6 +10,8 @@ interface AccountCardProps {
     balance: number;
     currency: string;
     locale: string;
+    isFavorite?: boolean;
+    onToggleFavorite?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export default function AccountCard({
@@ -17,7 +20,9 @@ export default function AccountCard({
     accountName,
     balance,
     currency,
-    locale
+    locale,
+    isFavorite,
+    onToggleFavorite
 }: AccountCardProps) {
     const formatAmount = (amount: number, curr: string) => {
         return new Intl.NumberFormat(undefined, {
@@ -28,6 +33,20 @@ export default function AccountCard({
 
     return (
         <Link href={`/${locale}/dashboard/accounts/${id}`} className={styles.card}>
+            {onToggleFavorite && (
+                <div
+                    className={styles.starButton}
+                    onClick={onToggleFavorite}
+                    title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                >
+                    <Star
+                        size={20}
+                        fill={isFavorite ? "#fbbf24" : "none"}
+                        color={isFavorite ? "#fbbf24" : "#94a3b8"}
+                    />
+                </div>
+            )}
+
             <div className={styles.header}>
                 <div className={styles.icon}>
                     <Wallet size={24} />

@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	sharedauth "nordic-bank/internal/shared/auth"
 	"nordic-bank/internal/shared/database"
 	"nordic-bank/internal/transaction/adapter"
 	"nordic-bank/internal/transaction/application"
@@ -32,6 +33,9 @@ func main() {
 	if err := db.Exec("CREATE SCHEMA IF NOT EXISTS transaction").Error; err != nil {
 		log.Fatalf("failed to create transaction schema: %v", err)
 	}
+
+	// Create UUID extension just in case
+	db.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"")
 
 	// Create Custom Types (safely)
 	enumQueries := []string{
@@ -81,6 +85,12 @@ func main() {
 	// Start HTTP Server
 	go func() {
 		router := gin.Default()
+
+		// Disable trailing slash redirect to prevent CORS issues
+		router.RedirectTrailingSlash = false
+
+		// Apply CORS middleware
+		router.Use(sharedauth.CORSMiddleware())
 
 		handler := txhttp.NewHandler(service)
 		handler.RegisterRoutes(router)

@@ -45,6 +45,22 @@ func (r *PostgresUserRepository) GetByUsername(ctx context.Context, username str
 	return &user, nil
 }
 
+func (r *PostgresUserRepository) GetByEmailOrUsername(ctx context.Context, identifier string) (*domain.User, error) {
+	var user domain.User
+	if err := r.db.WithContext(ctx).First(&user, "email = ? OR username = ?", identifier, identifier).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func (r *PostgresUserRepository) ListByRole(ctx context.Context, role domain.UserRole) ([]domain.User, error) {
+	var users []domain.User
+	if err := r.db.WithContext(ctx).Where("role = ?", role).Find(&users).Error; err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
 func (r *PostgresUserRepository) Update(ctx context.Context, user *domain.User) error {
 	return r.db.WithContext(ctx).Save(user).Error
 }

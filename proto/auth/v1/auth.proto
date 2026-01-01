@@ -18,6 +18,9 @@ service AuthService {
   
   // Refresh access token
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+
+  // List users (for service-to-service communication)
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
 }
 
 message VerifyTokenRequest {
@@ -80,4 +83,12 @@ message RefreshTokenResponse {
   string access_token = 1;
   string refresh_token = 2;
   google.protobuf.Timestamp expires_at = 3;
+}
+
+message ListUsersRequest {
+  string role = 1; // Optional filter by role (customer, employee, admin)
+}
+
+message ListUsersResponse {
+  repeated User users = 1;
 }

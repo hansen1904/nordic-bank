@@ -44,6 +44,12 @@ type User struct {
 	TwoFactorSecret      string   `gorm:"size:255"`
 	TwoFactorBackupCodes []string `gorm:"type:text[]"`
 
+	// User Preferences
+	PreferredTheme       string `gorm:"size:10;default:'light'"` // 'light' or 'dark'
+	PreferredLanguage    string `gorm:"size:5;default:'en'"`     // 'en', 'da', etc.
+	NotificationsEnabled bool   `gorm:"default:true"`
+	EmailNotifications   bool   `gorm:"default:true"`
+
 	CreatedAt           time.Time `gorm:"default:CURRENT_TIMESTAMP"`
 	UpdatedAt           time.Time `gorm:"default:CURRENT_TIMESTAMP"`
 	LastLoginAt         *time.Time

@@ -7,6 +7,8 @@ import (
 	"nordic-bank/internal/auth/domain"
 	sharedauth "nordic-bank/internal/shared/auth"
 
+	"nordic-bank/internal/auth/application"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,6 +16,9 @@ import (
 type AuthService interface {
 	Register(ctx context.Context, username, email, password string, role domain.UserRole) (*domain.User, error)
 	Login(ctx context.Context, email, password, ipAddress, userAgent string) (*domain.User, string, string, error)
+	GetUserByID(ctx context.Context, userID string) (*domain.User, error)
+	GetPreferences(ctx context.Context, userID string) (*application.UserPreferences, error)
+	UpdatePreferences(ctx context.Context, userID string, prefs *application.UserPreferences) error
 }
 
 type Handler struct {
@@ -38,6 +43,16 @@ func (h *Handler) RegisterRoutes(router *gin.Engine) {
 
 		// Protected employee registration (requires employee auth)
 		auth.POST("/register/employee", sharedauth.AuthMiddleware(h.jwtSecret), sharedauth.RoleMiddleware("employee"), h.registerEmployee)
+
+		// User preferences (requires authentication)
+		auth.GET("/preferences", sharedauth.AuthMiddleware(h.jwtSecret), h.getPreferences)
+		auth.PUT("/preferences", sharedauth.AuthMiddleware(h.jwtSecret), h.updatePreferences)
+	}
+
+	// User endpoint
+	users := router.Group("/api/v1/users")
+	{
+		users.GET("/:id", h.getUserByID)
 	}
 }
 
@@ -106,21 +121,22 @@ func (h *Handler) registerEmployee(c *gin.Context) {
 }
 
 type loginRequest struct {
-	Email    string `json:"email" binding:"required,email"`
-	Password string `json:"password" binding:"required"`
+	Identifier string `json:"email" binding:"required"` // Can be email or username
+	Password   string `json:"password" binding:"required"`
 }
 
 func (h *Handler) login(c *gin.Context) {
 	var req loginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request format"})
 		return
 	}
 
 	ipAddress := c.ClientIP()
 	userAgent := c.Request.UserAgent()
 
-	user, accessToken, refreshToken, err := h.service.Login(c.Request.Context(), req.Email, req.Password, ipAddress, userAgent)
+	// Pass req.Identifier to Login
+	user, accessToken, refreshToken, err := h.service.Login(c.Request.Context(), req.Identifier, req.Password, ipAddress, userAgent)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
@@ -133,5 +149,66 @@ func (h *Handler) login(c *gin.Context) {
 		"expires_in":    3600, // 1 hour for now
 		"user_id":       user.ID,
 		"role":          user.Role,
+	})
+}
+
+func (h *Handler) getPreferences(c *gin.Context) {
+	userID, exists := c.Get("userID")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	prefs, err := h.service.GetPreferences(c.Request.Context(), userID.(string))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, prefs)
+}
+
+func (h *Handler) updatePreferences(c *gin.Context) {
+	userID, exists := c.Get("userID")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	var prefs application.UserPreferences
+	if err := c.ShouldBindJSON(&prefs); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := h.service.UpdatePreferences(c.Request.Context(), userID.(string), &prefs); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "preferences updated"})
+}
+
+// getUserByID retrieves user details by ID (sanitized response)
+func (h *Handler) getUserByID(c *gin.Context) {
+	userID := c.Param("id")
+	if userID == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "user id is required"})
+		return
+	}
+
+	user, err := h.service.GetUserByID(c.Request.Context(), userID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "user not found"})
+		return
+	}
+
+	// Return sanitized user data (no password hash or sensitive info)
+	c.JSON(http.StatusOK, gin.H{
+		"id":       user.ID,
+		"username": user.Username,
+		"email":    user.Email,
+		"role":     user.Role,
+		"status":   user.Status,
 	})
 }

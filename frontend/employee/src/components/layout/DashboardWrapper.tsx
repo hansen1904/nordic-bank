@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Sidebar from './Sidebar';
+import RightSidebar from './RightSidebar';
+import styles from './DashboardWrapper.module.css';
 
 export default function DashboardWrapper({ children, locale }: { children: React.ReactNode, locale: string }) {
     const { user, isLoading } = useAuth();
@@ -18,8 +20,8 @@ export default function DashboardWrapper({ children, locale }: { children: React
 
     if (isLoading) {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', background: '#f8fafc' }}>
-                <div className="animate-spin" style={{ width: '40px', height: '40px', border: '4px solid #e2e8f0', borderTopColor: '#0f172a', borderRadius: '50%' }}></div>
+            <div className={styles.loadingContainer}>
+                <div className={styles.spinner}></div>
             </div>
         );
     }
@@ -28,16 +30,25 @@ export default function DashboardWrapper({ children, locale }: { children: React
         return null; // Will redirect
     }
 
+    // Login page has no sidebar
     if (pathname.includes('/login')) {
         return <>{children}</>;
     }
 
     return (
-        <div className="dashboard-layout">
+        <div className={styles.dashboardLayout}>
+            {/* Left Sidebar */}
             <Sidebar />
-            <main className="main-content">
-                {children}
+
+            {/* Main Content */}
+            <main className={styles.mainContent}>
+                <div className={styles.content}>
+                    {children}
+                </div>
             </main>
+
+            {/* Right Sidebar */}
+            <RightSidebar />
         </div>
     );
 }

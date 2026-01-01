@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Sidebar from './Sidebar';
+import RightSidebar from './RightSidebar';
 import { Menu, Loader2 } from 'lucide-react';
 import styles from './DashboardLayout.module.css';
 
@@ -42,12 +43,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
     return (
         <div className={styles.container}>
+            {/* Left Sidebar */}
             <Sidebar
                 locale={locale}
                 isOpen={sidebarOpen}
                 onClose={() => setSidebarOpen(false)}
             />
 
+            {/* Main Content */}
             <div className={styles.main}>
                 {/* Mobile Menu Toggle */}
                 <button
@@ -62,6 +65,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                     {children}
                 </div>
             </div>
+
+            {/* Right Sidebar */}
+            <RightSidebar user={user} />
         </div>
     );
 }

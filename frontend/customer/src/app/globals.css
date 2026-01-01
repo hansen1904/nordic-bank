@@ -47,6 +47,7 @@
   /* Background Colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
+  --bg-tertiary: #f3f4f6;
   --bg-dark: var(--color-primary-950);
 
   /* Refined Gradients - Subtle & Grave */
@@ -60,6 +61,13 @@
   --text-muted: #94a3b8;
   --text-inverse: #ffffff;
   --text-accent: #2563eb;
+
+  /* Card & Component Colors */
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --sidebar-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
 
   /* Typography - Classic Sans */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -97,6 +105,42 @@
   /* Container */
   --container-max: 1200px;
   --header-height: 72px;
+}
+
+/* ========================================
+   Dark Theme
+   ======================================== */
+[data-theme="dark"] {
+  /* Background Colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+
+  /* Text Colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  /* Card & Component Colors */
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --sidebar-bg: #0f172a;
+  --input-bg: #1e293b;
+  --input-border: #475569;
+
+  /* Semantic Colors - brighter for dark mode */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Accent adjustments */
+  --color-accent-blue: #60a5fa;
+  --text-accent: #60a5fa;
+
+  /* Glass effects */
+  --bg-glass-border: rgba(255, 255, 255, 0.1);
 }
 
 /* Base Styles */

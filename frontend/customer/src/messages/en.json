@@ -66,7 +66,7 @@
     },
     "login": {
         "title": "Login",
-        "subtitle": "Access your account",
+        "title": "Login",
         "form": {
             "email": "Email",
             "email_or_username": "Email or Username",
@@ -120,6 +120,7 @@
         "accounts": "Accounts",
         "loans": "Loans",
         "support": "Support",
+        "settings": "Settings",
         "logout": "Logout"
     },
     "accounts": {
@@ -156,5 +157,30 @@
         "address_label": "Address",
         "phone_label": "Phone",
         "email_label": "Email"
+    },
+    "settings": {
+        "title": "Settings",
+        "subtitle": "Manage your preferences and account settings",
+        "appearance": "Appearance",
+        "darkMode": "Dark Mode",
+        "darkModeDesc": "Switch between light and dark theme",
+        "language": "Language",
+        "languageDesc": "Choose your preferred language",
+        "notifications": "Notifications",
+        "pushNotifications": "Push Notifications",
+        "pushNotificationsDesc": "Receive notifications about account activity",
+        "emailNotifications": "Email Notifications",
+        "emailNotificationsDesc": "Receive email updates and statements",
+        "security": "Security",
+        "changePassword": "Change Password",
+        "changePasswordDesc": "Update your account password",
+        "change": "Change",
+        "twoFactor": "Two-Factor Authentication",
+        "twoFactorDesc": "Add an extra layer of security to your account",
+        "enable": "Enable",
+        "profile": "Profile",
+        "editProfile": "Edit Profile",
+        "editProfileDesc": "Update your personal information",
+        "edit": "Edit"
     }
 }

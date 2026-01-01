@@ -15,4 +15,10 @@ type AccountRepository interface {
 
 	// Ledger
 	CreateLedgerEntry(ctx context.Context, entry *LedgerEntry) error
+
+	// Requests
+	CreateRequest(ctx context.Context, req *AccountRequest) error
+	GetRequestByID(ctx context.Context, id uuid.UUID) (*AccountRequest, error)
+	ListRequests(ctx context.Context, status *RequestStatus) ([]*AccountRequest, error)
+	UpdateRequest(ctx context.Context, req *AccountRequest) error
 }

@@ -1,0 +1,249 @@
+.sidebar {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-left: 1px solid #e5e7eb;
+    overflow-y: auto;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Profile Section */
+.profileSection {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.avatar {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatarText {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+}
+
+.statusDot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 14px;
+    height: 14px;
+    background: #22c55e;
+    border: 3px solid #f9fafb;
+    border-radius: 50%;
+}
+
+.greeting {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    color: #0f172a;
+}
+
+.tagline {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.statCard {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+}
+
+.statIcon {
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.statValue {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.statLabel {
+    font-size: 0.6875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+/* Section Title */
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 0.75rem 0;
+}
+
+/* Section Container */
+.section {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+}
+
+/* Customer List */
+.customerList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.customerItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.customerItem:hover {
+    background: #f3f4f6;
+}
+
+.customerAvatar {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+}
+
+.customerInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.customerName {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0f172a;
+}
+
+.customerTime {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.viewAllBtn {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    background: transparent;
+    border: 1px dashed #d1d5db;
+    border-radius: 8px;
+    color: #6b7280;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.viewAllBtn:hover {
+    border-color: #0f172a;
+    color: #0f172a;
+}
+
+/* Quick Actions */
+.quickActions {
+    margin-bottom: 1rem;
+}
+
+.actionBtn {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background: #0f172a;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.actionBtn:hover {
+    background: #1e293b;
+    transform: translateY(-1px);
+}
+
+.actionBtn.secondary {
+    background: white;
+    border: 1px solid #e5e7eb;
+    color: #0f172a;
+}
+
+.actionBtn.secondary:hover {
+    background: #f3f4f6;
+}
+
+/* Contact Section */
+.contactSection {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.contactItem svg {
+    color: #0f172a;
+    flex-shrink: 0;
+}
+
+/* Hide on tablet and below */
+@media (max-width: 1200px) {
+    .sidebar {
+        display: none;
+    }
+}

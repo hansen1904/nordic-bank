@@ -66,3 +66,42 @@ func (s *AuthServiceServer) RefreshToken(ctx context.Context, req *pb.RefreshTok
 	// Implementation needed
 	return &pb.RefreshTokenResponse{}, nil
 }
+
+func (s *AuthServiceServer) ListUsers(ctx context.Context, req *pb.ListUsersRequest) (*pb.ListUsersResponse, error) {
+	var role *domain.UserRole
+	if req.Role != "" {
+		r := mapProtoRoleToDomain(req.Role)
+		role = &r
+	}
+
+	users, err := s.service.ListUsers(ctx, role)
+	if err != nil {
+		return nil, err
+	}
+
+	var pbUsers []*pb.User
+	for _, u := range users {
+		pbUsers = append(pbUsers, &pb.User{
+			Id:       u.ID.String(),
+			Username: u.Username,
+			Email:    u.Email,
+			Role:     mapRole(u.Role),
+			Status:   string(u.Status),
+		})
+	}
+
+	return &pb.ListUsersResponse{Users: pbUsers}, nil
+}
+
+func mapProtoRoleToDomain(roleStr string) domain.UserRole {
+	switch roleStr {
+	case "customer":
+		return domain.RoleCustomer
+	case "employee":
+		return domain.RoleEmployee
+	case "admin":
+		return domain.RoleAdmin
+	default:
+		return domain.RoleCustomer // Default fallback
+	}
+}

@@ -55,6 +55,42 @@ export default function Sidebar() {
             </nav>
 
             <div className="sidebar-footer" style={{ marginTop: 'auto', padding: 'var(--spacing-4)' }}>
+                {/* Language Switcher */}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: 'var(--spacing-4)',
+                    marginBottom: 'var(--spacing-4)',
+                    paddingBottom: 'var(--spacing-4)',
+                    borderBottom: '1px solid #1e293b'
+                }}>
+                    <Link
+                        href="/da"
+                        locale="da"
+                        style={{
+                            color: 'var(--color-slate-400)',
+                            textDecoration: 'none',
+                            fontSize: '0.875rem',
+                            fontWeight: 500
+                        }}
+                    >
+                        DA
+                    </Link>
+                    <span style={{ color: '#334155' }}>|</span>
+                    <Link
+                        href="/en"
+                        locale="en"
+                        style={{
+                            color: 'var(--color-slate-400)',
+                            textDecoration: 'none',
+                            fontSize: '0.875rem',
+                            fontWeight: 500
+                        }}
+                    >
+                        EN
+                    </Link>
+                </div>
+
                 <button
                     onClick={handleLogout}
                     className="nav-item"
